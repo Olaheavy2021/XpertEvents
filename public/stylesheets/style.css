@@ -1,0 +1,580 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.main {
+    width: 100%;
+    background-size: cover;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.60) 50%, rgba(0, 0, 0, 0.60) 50%),
+    url(/public/images/background_image.jpg);
+    background-position: center; /* Center the image */
+    height: 100vh;
+}
+
+/*.main {*/
+/*    width: 100%;*/
+/*    background-size: cover;*/
+/*    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.60) 50%, rgba(0, 0, 0, 0.60) 50%),*/
+/*    url(/~c2042523/xpertevents/public/images/background_image.jpg);*/
+/*    background-position: center; !* Center the image *!*/
+/*    height: 100vh;*/
+/*}*/
+
+.navbar {
+    max-width: 1200px; /* Set maximum width */
+    height: 75px;
+    margin: auto;
+}
+
+
+.icon {
+    width: 200px;
+    float: left;
+    height: 70px;
+}
+
+.logo {
+    color: #ED7014;
+    font-size: 35px;
+    font-family: Lucida Handwriting;
+    padding-left: 20px;
+    float: left;
+    padding-top: 10px;
+    margin-top: 5px
+}
+
+.menu {
+    width: 400px;
+    float: left;
+    height: 70px;
+}
+
+.menu ul {
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu ul li {
+    list-style: none;
+    margin-left: 62px;
+    margin-top: 27px;
+    font-size: 14px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-family: "Lucida Calligraphy";
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+
+.menu ul li a:hover {
+    color: #ff7200;
+}
+
+.btn {
+    width: 100px;
+    height: 40px;
+    background: #ED7014;
+    border: 2px solid #ED7014;
+    margin-top: 13px;
+    color: #fff;
+    font-size: 15px;
+    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: 0.2s ease;
+    cursor: pointer;
+    font-family: Arial;
+}
+
+.btn:hover {
+    color: #000;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.content {
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    color: #fff;
+    position: relative;
+}
+
+.content .par {
+    padding-left: 20px;
+    padding-bottom: 25px;
+    font-family: "Lucida Calligraphy";
+    letter-spacing: 1.2px;
+    line-height: 30px;
+    font-weight: bolder;
+}
+
+.content h1 {
+    font-family: "Lucida Calligraphy";
+    font-size: 50px;
+    padding-left: 20px;
+    margin-top: 9%;
+    letter-spacing: 2px;
+}
+
+.content .cn {
+    width: 160px;
+    height: 40px;
+    background: #ED7014;
+    border: none;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .4s ease;
+
+}
+
+.content .cn a {
+    text-decoration: none;
+    color: #000;
+    transition: .3s ease;
+    font-family: "Lucida Calligraphy";
+}
+
+.cn:hover {
+    background-color: #fff;
+}
+
+.content span {
+    color: #ED7014;
+    font-size: 65px
+}
+
+.form {
+    width: 270px;
+    height: 380px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+    position: absolute;
+    top: -20px;
+    left: 870px;
+    transform: translate(0%, -5%);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.form h2 {
+    width: 220px;
+    font-family: "Lucida Calligraphy";
+    text-align: center;
+    color: #ED7014;
+    font-size: 22px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 2px;
+    padding: 8px;
+}
+
+.form input {
+    width: 270px;
+    height: 35px;
+    background: transparent;
+    border-bottom: 1px solid #ED7014;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    font-family: "Lucida Calligraphy";
+}
+
+.form input:focus {
+    outline: none;
+}
+
+::placeholder {
+    color: #fff;
+    font-family: "Lucida Calligraphy";
+}
+
+.btnn {
+    width: 240px;
+    height: 40px;
+    background: #ED7014;
+    border: none;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.4s ease;
+}
+
+.form .btnn:hover {
+    background: #fff;
+    color: #ED7014;
+}
+
+.form .btnn a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-family: "Lucida Calligraphy";
+}
+
+.form .link {
+    font-family: "Lucida Calligraphy";
+    font-size: 17px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.form .link a {
+    text-decoration: none;
+    color: #ED7014;
+    font-family: "Lucida Calligraphy";
+    font-weight: bolder;
+}
+
+.liw {
+    padding-top: 15px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.icons a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.icons ion-icon {
+    color: #fff;
+    font-size: 30px;
+    padding-left: 14px;
+    padding-top: 5px;
+    transition: 0.3s ease;
+}
+
+.icons ion-icon:hover {
+    color: #ED7014;
+}
+
+footer {
+    background-color: #111;
+}
+
+.footerContainer {
+    width: 100%;
+    padding: 70px 30px 20px;
+}
+
+.socialIcons {
+    display: flex;
+    justify-content: center;
+}
+
+.socialIcons a {
+    text-decoration: none;
+    padding: 10px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.socialIcons a ion-icon {
+    font-size: 2em;
+    color: black;
+    opacity: 0.9;
+}
+
+/* Hover Effect on Social Media Icons*/
+.socialIcons a:hover {
+    background-color: #ED7014;
+}
+
+.socialIcons a:hover ion-icon {
+    background-color: #ED7014;
+    transition: 0.5s;
+}
+
+.footerNav {
+    margin: 30px 0;
+}
+
+.footerNav ul {
+    display: flex;
+    justify-content: center;
+}
+
+.footerNav ul li a {
+    color: white;
+    margin: 20px;
+    text-decoration: none;
+    font-size: 1.3em;
+    opacity: 0.7;
+    transition: 0.5s;
+    font-family: "Lucida Calligraphy";
+}
+
+.footerNav ul li a:hover {
+    background-color: #ED7014;
+}
+
+.footerBottom {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+}
+
+.footerBottom p {
+    color: white;
+    font-family: "Lucida Calligraphy";
+}
+
+.designer {
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0px 5px;
+    font-family: "Lucida Calligraphy";
+}
+/* Errors */
+.errors{
+    display: inline-block;
+    border: 2px solid #ED7014;
+    color: #ED7014;
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: white;
+    font-family: "Lucida Sans";
+}
+
+.errors ul{
+    margin-bottom: 0;
+    padding-left: 1em;
+}
+
+.loginError{
+    top: -150px;
+    left: 730px;
+    position: absolute;
+}
+/* Session Messages*/
+#message{
+    color: #0B61A5;
+    background: white;
+    border: 2px solid #0B61A5;
+    padding: 1em 15px;
+    margin: 1em 30px;
+    width: 890px;
+}
+
+@media screen and (max-width: 1200px) {
+    /*Login Box*/
+    .main {
+        padding-left: 20px;
+        height: 180vh;
+    }
+
+    .form {
+        width: -30px;
+        height: 380px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+        position: absolute;
+        top: 420px;
+        left: 50px;
+        transform: translate(0%, -5%);
+        border-radius: 10px;
+        padding: 25px;
+    }
+
+    .form input {
+        width: 240px;
+        height: 35px;
+        background: transparent;
+        border-bottom: 1px solid #ED7014;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        color: #fff;
+        font-size: 15px;
+        letter-spacing: 1px;
+        margin-top: 30px;
+        font-family: sans-serif;
+    }
+
+    .btn a {
+        font-size: 16px;
+    }
+
+    .form .link a {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 830px) {
+    /*Tablet*/
+    .content {
+        margin-top: 120px;
+        width: 80%;
+        margin-left: 40px;
+    }
+
+    .content h1, .content span {
+        font-size: 6vw;
+    }
+
+    .content .par {
+        width: 90%;
+        font-size: 1.8vw;
+    }
+
+    .content .cn {
+        width: 15%;
+        height: 5.0vw;
+        font-size: 2vw;
+    }
+
+    .content a {
+        font-size: 2vw;
+    }
+
+    .logo {
+        margin-left: 120px;
+        width: 100%;
+        margin-top: 15px;
+        font-size: 5vw;
+    }
+
+    .menu {
+        width: 100%
+    }
+
+    .menu ul {
+        margin-top: -5px;
+        margin-left: 5px;
+    }
+
+    .menu ul li {
+        margin-left: 60px;
+    }
+
+    .menu ul li a {
+        font-size: 2vw;
+    }
+
+    .btn {
+        height: 30px;
+        width: 70px;
+    }
+
+    .main {
+        padding-left: 20px;
+        height: 180vh;
+    }
+
+    .form {
+        width: -30px;
+        height: 380px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+        position: absolute;
+        top: 420px;
+        left: 50px;
+        transform: translate(0%, -5%);
+        border-radius: 10px;
+        padding: 25px;
+    }
+
+    .form input {
+        width: 240px;
+        height: 35px;
+        background: transparent;
+        border-bottom: 1px solid #ED7014;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        color: #fff;
+        font-size: 15px;
+        letter-spacing: 1px;
+        margin-top: 30px;
+        font-family: sans-serif;
+    }
+
+    .btnn a {
+        font-size: 16px;
+    }
+
+    .form .link a {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    /* IPAD old version */
+    .content {
+        margin-top: 80px;
+        margin-left: 20px;
+    }
+
+    .logo {
+        margin-left: 180px;
+        font-size: 4vw;
+    }
+
+    .menu ul {
+        margin-top: -25px;
+        margin-left: -5px;
+    }
+
+    .menu ul li {
+        margin-left: 50px;
+    }
+
+    .menu ul li a {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    /*mobile*/
+    .logo {
+        margin-left: 140px;
+        font-size: 4vw;
+    }
+
+    .menu ul {
+        margin-top: -25px;
+    }
+
+    .menu ul-li {
+        margin-left: 42px;
+    }
+
+    .menu ul li a {
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 700px) {
+    .footerNav ul {
+        flex-direction: column;
+    }
+
+    .footerNav ul li {
+        width: 100%;
+        text-align: center;
+        margin: 10px;
+    }
+
+}

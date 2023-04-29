@@ -1,0 +1,156 @@
+.registerError{
+    top: 250px;
+    left: 30px;
+    position: absolute;
+}
+.registrationForm {
+    width: 300px;
+    height: 480px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+    position: absolute;
+    top: 80px;
+    left: 500px;
+    transform: translate(0%, -5%);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.registrationForm h2 {
+    width: 220px;
+    font-family: "Lucida Calligraphy";
+    text-align: center;
+    color: #ED7014;
+    font-size: 22px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 2px 30px;
+    padding: 8px;
+}
+
+.registrationForm input {
+    width: 280px;
+    height: 35px;
+    background: transparent;
+    border-bottom: 1px solid #ED7014;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    font-family: "Lucida Sans";
+}
+
+.registrationForm input:focus {
+    outline: none;
+}
+
+.registrationForm .link {
+    font-family: "Lucida Calligraphy";
+    font-size: 17px;
+    padding-top: 20px;
+    text-align: center;
+    color: white;
+}
+
+.registrationForm .link a {
+    text-decoration: none;
+    color: #ED7014;
+    font-family: "Lucida Calligraphy";
+    font-weight: bolder;
+}
+
+.registrationForm .btnn{
+    margin-left: 20px;
+}
+
+.registrationForm .btnn:hover {
+    background: #fff;
+    color: #ED7014;
+}
+
+.registrationForm .btnn  {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-family: "Lucida Calligraphy";
+}
+
+.registrationForm .link {
+    font-family: "Lucida Calligraphy";
+    font-size: 17px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.registrationForm .link a {
+    text-decoration: none;
+    color: #ED7014;
+    font-family: "Lucida Calligraphy";
+    font-weight: bolder;
+}
+
+@media screen and (max-width: 1200px) {
+    /*Login Box*/
+    .main {
+        padding-left: 20px;
+        height: 180vh;
+    }
+
+    .registrationForm {
+        width: -30px;
+        height: 520px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+        position: absolute;
+        top: 200px;
+        left: 50px;
+        transform: translate(0%, -5%);
+        border-radius: 10px;
+        padding: 25px;
+    }
+
+    .registrationForm input {
+        width: 240px;
+        height: 35px;
+        background: transparent;
+        border-bottom: 1px solid #ED7014;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        color: #fff;
+        font-size: 15px;
+        letter-spacing: 1px;
+        margin-top: 30px;
+        font-family: sans-serif;
+    }
+
+    .btnn a {
+        font-size: 16px;
+    }
+
+    .registrationForm .link a {
+        font-size: 16px;
+    }
+
+    .registrationForm .btnn{
+        margin-left: 20px;
+        margin-top: 40px;
+    }
+}
+
+@media screen and (min-width: 2560px){
+     .registrationForm {
+    width: 300px;
+    height: 480px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+    position: absolute;
+    top: 200px;
+    left: 950px;
+    transform: translate(0%, -5%);
+    border-radius: 10px;
+    padding: 25px;
+}
+ 
+}
+

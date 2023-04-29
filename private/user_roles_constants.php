@@ -1,0 +1,8 @@
+<?php
+const CLIENT_ROLE = "CLIENT";
+
+const ADMIN_ROLE = "ADMIN";
+
+const SALESSTAFF_ROLE = "SALESTAFF";
+
+const MANAGER_ROLE = "MANAGER";

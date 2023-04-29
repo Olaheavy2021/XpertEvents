@@ -1,0 +1,506 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.sidebar {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(45deg, #ffffff, #ED7014);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.sidebar ul li {
+    width: 100%;
+    list-style: none;
+}
+
+.sidebar ul li:hover {
+    background: white;
+}
+
+.sidebar ul li:first-child:hover {
+    background: none;
+}
+
+.sidebar ul li:first-child {
+    line-height: 60px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid #000000;
+    font-family: "Lucida Calligraphy", serif;
+}
+
+.sidebar ul li a {
+    width: 100%;
+    text-decoration: none;
+    color: #000;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a i {
+    min-width: 60px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.sidebar .title {
+    padding: 0 10px;
+    font-size: 20px;
+}
+
+.main {
+    position: absolute;
+    width: calc(100% - 300px);
+    min-height: 100vh;
+    left: 300px;
+    background: #f5f5f5;
+}
+
+.top-bar {
+    position: fixed;
+    height: 60px;
+    width: calc(100% - 300px);
+    background: #fff;
+    display: grid;
+    grid-template-columns: 10fr 0.4fr 1fr;
+    grid-gap: 5px;
+    align-items: center;
+    color: #444;
+    padding: 0 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.top-bar .search {
+    position: relative;
+    max-width: 400px;
+}
+
+.top-bar .search {
+    position: relative;
+    max-width: 400px;
+    font-family: "Lucida Sans", serif;
+    font-weight: bolder;
+    color: #ED7014;
+    font-size: 17px;
+}
+
+.search span {
+    padding-left: 4px;
+
+}
+
+.role {
+    font-family: "Lucida Handwriting", serif;
+    font-weight: bolder;
+    color: #ED7014;
+    font-size: 17px;
+}
+
+.search i {
+    position: absolute;
+    left: -14px;
+    top: 2px;
+    cursor: pointer;
+}
+
+
+.user {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+.cards {
+    margin-top: 60px;
+    width: 100%;
+    padding: 35px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.cards .card {
+    background: linear-gradient(45deg, #ffffff, #ED7014);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+}
+
+.number {
+    font-size: 35px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.card-name {
+    color: #444;
+    font-weight: 600;
+}
+
+.icon-box i {
+    font-size: 45px;
+    color: #444;
+}
+
+.tables {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 20px;
+    align-items: self-start;
+    padding: 0 20px 20px 20px;
+}
+
+.list-prepackaged,
+.list-staff {
+    min-height: 350px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #444;
+}
+
+.btn {
+    padding: 5px 10px;
+    background: linear-gradient(45deg, #ffffff, #ED7014);
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+}
+
+table {
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead td {
+    font-weight: 600;
+    color: #333;
+}
+
+table tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+tbody tr:hover {
+    background: #444;
+    color: #fff;
+}
+
+table tr:last-child {
+    border-bottom: none;
+}
+
+td {
+    padding: 9px 5px;
+}
+
+td i {
+    padding: 7px;
+    color: #fff;
+    border-radius: 50px;
+}
+
+.list-prepackaged table tbody td:last-child {
+    white-space: nowrap;
+}
+
+
+.fa-eye {
+    background: #32bea6;
+}
+
+.fa-edit {
+    background: #63b4f4;
+}
+
+.fa-trash-alt {
+    background: #ed5564;
+}
+
+/*Admin User Management*/
+
+.userTable {
+    width: 100%;
+}
+
+.userTableHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: rgb(240, 240, 240);
+}
+
+.userTableHeader p {
+    margin-left: 290px;
+    font-size: 18px;
+    color: #ED7014;
+    font-family: "Lucida Sans", serif;
+    font-weight: bolder;
+}
+
+button {
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 10px;
+    font-family: "Lucida Sans", serif;
+
+}
+
+.addNewUser {
+    padding: 10px 20px;
+    color: #ffffff;
+    background-color: #ED7014;
+}
+
+.userTable .tableSection {
+    margin-left: 290px;
+    height: 500px;
+    overflow: auto;
+}
+
+.userTable table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.userTable table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f6f9fc;
+    color: #ED7014;
+    font-size: 15px;
+}
+
+th, td {
+    border-bottom: 1px solid #dddddd;
+    padding: 10px 20px;
+    word-break: break-all;
+    text-align: center;
+}
+
+tr td {
+    font-family: "Lucida Sans", serif;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+tr:hover td {
+    color: #ED7014;
+    cursor: pointer;
+    background-color: #f6f9fc;
+}
+
+::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: rgb(240, 240, 240);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.pagination a, .pagination span {
+    display: inline-block;
+    margin: 0 5px;
+    background-color: #ED7014;
+    color: #ffffff;
+    border: 2px solid #d5d0d0;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+}
+
+.pagination span.selected {
+    font-weight: bold;
+    color: #000;
+}
+
+.tableEdit {
+    background-color: green;
+}
+
+.tableDelete {
+    background-color: red;
+}
+
+/*Disable User*/
+.disableContent {
+    margin-left: 290px;
+    min-height: 350px;
+    background: #fff;
+    padding: 20px;
+    font-family: "Lucida Sans", serif;
+    font-weight: bolder;
+}
+
+.disableContent .card{
+    width: 450px;
+    margin: 10px;
+    background:  #ED7014;
+    text-align: center;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.disableContent a{
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    font-family: "Lucida Handwriting", serif;
+    font-weight: bolder;
+
+}
+
+.disableContent .card h3{
+    margin-top: 15px;
+}
+
+.disableContent .card .btn{
+    padding: 5px 10px;
+    background: #f6f9fc;
+    color: #000;
+    text-align: center;
+    margin-top: 15px;
+    cursor: pointer;
+    font-family: "Lucida Sans", serif;
+    font-weight: bolder;
+    font-size: 18px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 1090px) {
+    .sidebar {
+        width: 60px;
+    }
+
+    .sidebar .title {
+        display: none;
+    }
+
+    .main {
+        width: calc(100% - 60px);
+        left: 60px;
+    }
+
+    .top-bar {
+        width: calc(100% - 60px);
+    }
+
+    .userTable .tableSection {
+        margin-left: 60px;
+        height: 500px;
+        overflow: auto;
+    }
+}
+
+@media (max-width: 860px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tables {
+        grid-template-columns: 1fr;
+    }
+
+    .addNewUser {
+        padding: 10px 20px;
+        color: #ffffff;
+        background-color: #0298cf;
+        margin-left: 270px;
+        margin-top: 3px;
+    }
+
+}
+
+@media (max-width: 530px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .list-prepackaged td:nth-child(3) {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .list-prepackaged, .list-staff {
+        font-size: 70%;
+        padding: 10px;
+        min-height: 200px;
+    }
+
+    .cards, .tables {
+        padding: 10px;
+    }
+
+    .search input {
+        padding: 0 10px;
+    }
+
+    .user {
+        width: 40px;
+        height: 40px;
+    }
+}

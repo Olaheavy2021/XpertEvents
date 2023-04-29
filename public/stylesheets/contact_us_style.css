@@ -1,0 +1,237 @@
+.contactHeading {
+    font-family: "Lucida Calligraphy";
+    font-size: 40px;
+    padding-left: 20px;
+    margin-left: 400px;
+    letter-spacing: 2px;
+    color: #ED7014;
+}
+
+.contactBody {
+    width: 1200px;
+    margin-left: 120px;
+    padding-left: 20px;
+    padding-bottom: 25px;
+    font-family: "Lucida Calligraphy";
+    font-weight: bolder;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+    color: white;
+}
+
+.contactDetails {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.contactDetails .contactInfo {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contactDetails .contactInfo .contactBox {
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+}
+
+.contactDetails .contactInfo .contactBox .contactIcon {
+    min-width: 60px;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+}
+
+.contactDetails .contactInfo .contactBox .contactText {
+    display: flex;
+    margin-left: 20px;
+    font-size: 16px;
+    color: white;
+    flex-direction: column;
+    font-weight: bolder;
+    font-family: "Lucida Calligraphy";
+}
+
+.contactDetails .contactInfo .contactBox .contactText h3 {
+    font-weight: 1000;
+    color: #ED7014;
+    font-family: "Lucida Calligraphy";
+}
+
+.contactDetails .contactForm {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    height: 320px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+    transform: translate(0%, -5%);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.contactForm h2 {
+    width: 220px;
+    font-family: "Lucida Calligraphy";
+    text-align: center;
+    color: #ED7014;
+    font-size: 22px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 2px 75px;
+    padding: 8px;
+}
+
+.contactForm input {
+    width: 350px;
+    height: 35px;
+    background: transparent;
+    border-bottom: 1px solid #ED7014;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    font-family: "Lucida Sans";
+}
+
+/*.contactForm label {
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    font-family: "Lucida Calligraphy";
+    margin-bottom: 10px;
+}*/
+
+
+.contactForm .link {
+    font-family: "Lucida Calligraphy";
+    font-size: 17px;
+    padding-top: 20px;
+    text-align: center;
+    color: white;
+}
+
+.contactForm .link a {
+    text-decoration: none;
+    color: #ED7014;
+    font-family: "Lucida Calligraphy";
+    font-weight: bolder;
+}
+
+.contactForm .btnn {
+    margin-left: 70px;
+}
+
+.contactForm .btnn:hover {
+    background: #fff;
+    color: #ED7014;
+}
+
+.contactForm .btnn a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-family: "Lucida Calligraphy";
+    padding: 5px;
+}
+
+.contactForm textarea:focus {
+    outline:solid;
+}
+
+
+@media (max-width: 991px) {
+    .contactHeading {
+        font-family: "Lucida Calligraphy";
+        font-size: 40px;
+        padding-left: 20px;
+        margin-left: 0px;
+        letter-spacing: 2px;
+        color: #ED7014;
+    }
+
+    .contactBody {
+        width: 500px;
+        margin-left: 0px;
+        padding-left: 5px;
+        padding-bottom: 25px;
+        font-family: "Lucida Calligraphy";
+        font-weight: bolder;
+        letter-spacing: 1.2px;
+        line-height: 30px;
+        color: white;
+    }
+
+    .contactContent {
+        padding: 50px;
+    }
+
+    .contactDetails {
+        flex-direction: column;
+    }
+
+    .contactDetails .contactInfo {
+        margin-bottom: 20px;
+    }
+
+    .contactDetails .contactInfo .contactForm {
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 2560px){
+   .contactHeading {
+        font-family: "Lucida Calligraphy";
+        font-size: 40px;
+        padding-left: 20px;
+        margin-left: 950px;
+        letter-spacing: 2px;
+        color: #ED7014;
+    }
+
+    .contactBody {
+    width: 1200px;
+    margin-left: 600px;
+    padding-left: 20px;
+    padding-bottom: 25px;
+    font-family: "Lucida Calligraphy";
+    font-weight: bolder;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+    color: white;
+}
+
+.contactDetails .contactInfo {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 340px;
+}
+
+.contactDetails .contactForm {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    height: 320px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+    transform: translate(0%, -5%);
+    border-radius: 10px;
+    padding: 25px;
+     margin-right: 350px;
+}
+
+}
+
+

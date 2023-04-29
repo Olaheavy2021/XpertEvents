@@ -1,0 +1,57 @@
+.serviceTitle h1 {
+    text-align: center;
+    padding-top: 50px;
+    font-size: 42px;
+    font-family: "Lucida Calligraphy";
+    color: #ED7014;
+}
+
+.serviceTitle h1::after {
+    content: "";
+    height: 4px;
+    width: 230px;
+    background-color: #fff;
+    display: block;
+    margin: auto;
+}
+
+.services {
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 75px auto;
+    text-align: center;
+}
+
+.servicesCard {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin: 0px 20px;
+    padding: 20px 20px;
+    background-color: #efefef;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.servicesCard .servicesIcon {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.servicesCard h2 {
+    font-size: 25px;
+    color: #ED7014;
+    margin-bottom: 20px;
+    font-family: "Lucida Calligraphy";
+}
+
+.servicesCard p{
+    font-size: 17px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    color: #5e5e5e;
+}
