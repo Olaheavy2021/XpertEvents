@@ -13,7 +13,7 @@ if (!$user) {
 
 if(isPostRequest()){
     $admin = new Admin();
-    $result = $admin->activateUser($user->id);
+    $result = $admin->enableUser($user->id);
     global $session;
     $session->message('The user was enabled successfully');
     redirectTo(urlFor('/admin/user/index.php'));

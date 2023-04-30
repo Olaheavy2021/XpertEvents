@@ -1,10 +1,10 @@
 <?php require_once('../../../private/initialize.php'); ?>
-<?php require_once (PRIVATE_PATH . '/class/user.class.php'); ?>
-<?php require_once (PRIVATE_PATH . '/class/pagination.class.php'); ?>
+<?php require_once(PRIVATE_PATH . '/class/user.class.php'); ?>
+<?php require_once(PRIVATE_PATH . '/class/pagination.class.php'); ?>
 <?php requireLogin() ?>
 <?php include SHARED_PATH . '/admin_header.php' ?>
 <?php
-
+//Fetch all the users and paginate the page
 $current_page = $_GET['page'] ?? 1;
 $per_page = 5;
 $total_count = User::countAll();
@@ -42,10 +42,9 @@ $users = User::findAll($per_page, $pagination->offset());
                             <?php
                             if (empty($users[$i]->account_status)) {
                                 echo '<button class="tableEdit"><a href="' . urlFor('/admin/user/enable_user.php?id=' . removeSpecialChars(encodeUrl($users[$i]->id))) . '"><i class="fas fa-trash-restore"></i></a></button>';
-                            }else{
+                            } else {
                                 echo '<button class="tableDelete"><a href="' . urlFor('/admin/user/disable_user.php?id=' . removeSpecialChars(encodeUrl($users[$i]->id))) . '"><i class="fas fa-trash"></i></a></button>';
                             }
-
                             ?>
                         </td>
                     </tr>

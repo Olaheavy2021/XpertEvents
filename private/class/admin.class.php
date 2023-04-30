@@ -1,6 +1,6 @@
 <?php
 class Admin extends Employee{
-    public function deactivateUser($id) :int
+    public function disableUser($id) :int
     {
         $sql = "UPDATE users SET ";
         $sql .= "account_status = 0 ";
@@ -9,7 +9,7 @@ class Admin extends Employee{
         return parent::updateColumn($sql);
     }
 
-    public function activateUser($id):int
+    public function enableUser($id):int
     {
         $sql = "UPDATE users SET ";
         $sql .= "account_status = 1 ";

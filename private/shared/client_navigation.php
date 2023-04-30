@@ -1,3 +1,8 @@
+<?php
+// Get the current page filename
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
+
 <nav>
     <ul>
         <li>
@@ -7,7 +12,8 @@
             </a>
         </li>
         <li>
-            <a href="<?php echo urlFor('/client/index.php'); ?>">
+            <a href="<?php echo urlFor('/client/index.php'); ?>"
+                <?php if ($current_page == 'index.php') echo 'class="active"'; ?>>
                 <i class="fas fa-th-large"></i>
                 <span class="nav-item">Dashboard</span>
             </a>
@@ -25,7 +31,9 @@
             </a>
         </li>
         <li>
-            <a href="#" title="Profile">
+            <a href="<?php echo urlFor('/client/profile.php') ?>"
+                <?php if ($current_page == 'profile.php') echo 'class="active"'; ?>
+              title="Profile">
                 <i class="fas fa-user"></i>
                 <span class="nav-item">Profile</span>
             </a>

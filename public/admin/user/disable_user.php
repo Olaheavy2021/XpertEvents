@@ -14,7 +14,7 @@ if (!$user) {
 
 if(isPostRequest()){
     $admin = new Admin();
-    $result = $admin->deactivateUser($user->id);
+    $result = $admin->disableUser($user->id);
     global $session;
     $session->message('The user was disabled successfully');
     redirectTo(urlFor('/admin/user/index.php'));

@@ -1,0 +1,143 @@
+.profile-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reset-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -150px;
+}
+
+.profile-box {
+    background: #ED7014;
+    text-align: center;
+    padding: 40px 90px;
+    color: #fff;
+    position: relative;
+    border-radius: 20px;
+}
+
+.profile-box h3 {
+    font-size: 22px;
+    margin-top: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.profile-box button a{
+    background: #fff;
+    color: #ED7014;
+    border: none;
+    outline: none;
+    box-shadow: 0 5px 10px rgba(244, 67, 54, 0.5);
+    padding: 15px 60px;
+    cursor: pointer;
+    border-radius: 30px;
+    margin-bottom: -50px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: -10px;
+}
+
+.profile-pic {
+    width: 150px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 6px;
+    margin-top: 40px;
+}
+
+.profile-bottom {
+    background: #fff;
+    color: #999;
+    padding: 60px 0;
+    margin-right: -90px;
+    margin-left: -90px;
+    margin-bottom: -40px;
+    border-radius: 20px;
+}
+
+
+.reset-center{
+    width: 430px;
+    margin: 130px;
+    position: relative;
+}
+
+.reset-center .reset-header{
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    padding: 25px 0 30px 25px;
+    background: #ED7014;
+    border-bottom: 1px solid #ED7014;
+    border-radius: 5px 5px 0 0;
+    font-family: "Lucida Sans", serif;
+}
+
+.reset-center form{
+    position: absolute;
+    background: white;
+    width: 100%;
+    padding: 50px 10px 0 30px;
+    box-sizing: border-box;
+    border: 2px solid  #ED7014;
+    border-radius: 0 0 5px 5px;
+}
+
+.reset-center form input{
+    height: 50px;
+    width: 90%;
+    padding: 0 10px;
+    border-radius: 3px;
+    border: 1px solid silver;
+    font-size: 18px;
+    outline: none;
+    font-family: "Lucida Sans", serif;
+}
+
+.reset-center form input[type="password"]{
+    margin-top: 20px;
+}
+
+.reset-center form input[type="email"]{
+   color: gray;
+}
+.reset-center form i{
+    position: absolute;
+    font-size: 25px;
+    color: grey;
+    margin: 15px 0 0 -45px;
+}
+.reset-center form i.fa-lock{
+    margin-top: 35px;
+}
+.reset-center form input[type="submit"]{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 150px;
+    height: 45px;
+    color: white;
+    cursor: pointer;
+    line-height: 45px;
+    border-radius: 45px;
+    border-radius: 5px;
+    background: #ED7014;
+}
+
+.reset-center form input[type="submit"]:hover{
+    background: #ffffff;
+    color: #ED7014;
+    transition: .5s;
+}
+
+
+
+
