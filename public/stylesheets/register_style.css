@@ -1,11 +1,12 @@
-.registerError{
+.registerError {
     top: 250px;
-    left: 30px;
+    left: 15px;
     position: absolute;
 }
+
 .registrationForm {
     width: 300px;
-    height: 480px;
+    height: 500px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
     position: absolute;
     top: 80px;
@@ -61,7 +62,7 @@
     font-weight: bolder;
 }
 
-.registrationForm .btnn{
+.registrationForm .btnn {
     margin-left: 20px;
 }
 
@@ -70,7 +71,7 @@
     color: #ED7014;
 }
 
-.registrationForm .btnn  {
+.registrationForm .btnn {
     text-decoration: none;
     color: #000;
     font-weight: bold;
@@ -133,24 +134,30 @@
         font-size: 16px;
     }
 
-    .registrationForm .btnn{
+    .registrationForm .btnn {
         margin-left: 20px;
         margin-top: 40px;
     }
 }
 
-@media screen and (min-width: 2560px){
-     .registrationForm {
-    width: 300px;
-    height: 480px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
-    position: absolute;
-    top: 200px;
-    left: 950px;
-    transform: translate(0%, -5%);
-    border-radius: 10px;
-    padding: 25px;
-}
- 
+@media screen and (min-width: 2560px) {
+    .registrationForm {
+        width: 300px;
+        height: 500px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+        position: absolute;
+        top: 200px;
+        left: 950px;
+        transform: translate(0%, -5%);
+        border-radius: 10px;
+        padding: 25px;
+    }
+    .registerError {
+        top: 250px;
+        left: 450px;
+        position: absolute;
+    }
+
+
 }
 

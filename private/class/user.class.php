@@ -1,17 +1,17 @@
 <?php
 require_once(PRIVATE_PATH . '/class/databaseobject.class.php');
+
 class User extends DatabaseObject
 {
     static protected $tableName = "users";
-    static protected $dbColumns = ['id', 'first_name', 'last_name', 'email', 'hashed_password', 'role', 'account_status'];
+    static protected $dbColumns = ['id', 'first_name', 'last_name', 'email', 'hashed_password', 'role', 'account_status', 'phone_number'];
 
-    public $id;
+    protected $id;
     public $first_name;
 
     public $last_name;
 
     public $email;
-
     protected $hashed_password;
 
     public $role;
@@ -24,6 +24,8 @@ class User extends DatabaseObject
 
     protected $password_required = true;
 
+    public $phone_number;
+
     public function __construct($args = [])
     {
         $this->first_name = $args['first_name'] ?? '';
@@ -33,6 +35,7 @@ class User extends DatabaseObject
         $this->role = $args['role'] ?? '';
         $this->account_status = $args['account_status'] ?? 0;
         $this->confirm_password = $args['confirm_password'] ?? '';
+        $this->phone_number = $args['phone_number'] ?? '';
     }
 
 
@@ -89,15 +92,17 @@ class User extends DatabaseObject
 
         //create a session for the user
         global $session;
-        $session->login($user);
+        $sessionResult = $session->login($user);
 
-        //redirect the user accordingly to their landing page
-        if ($user->role === CLIENT_ROLE) {
-            redirectTo(urlFor('/client/index.php'));
-        } elseif ($user->role === ADMIN_ROLE || $user->role === SALESSTAFF_ROLE || $user->role === MANAGER_ROLE) {
-            redirectTo(urlFor('/admin/index.php'));
-        } else {
-            $this->errors[] = "Login was unsuccessful";
+        if ($sessionResult) {
+            //redirect the user accordingly to their landing page
+            if ($user->role === CLIENT_ROLE) {
+                redirectTo(urlFor('/client/index.php'));
+            } elseif ($user->role === ADMIN_ROLE || $user->role === SALESSTAFF_ROLE || $user->role === MANAGER_ROLE) {
+                redirectTo(urlFor('/admin/index.php'));
+            } else {
+                $this->errors[] = "Login was unsuccessful";
+            }
         }
 
         return false;
@@ -112,6 +117,61 @@ class User extends DatabaseObject
         global $session;
         $session->logout();
         redirectTo(urlFor('/homepage.php'));
+    }
+
+    /**
+     * @return bool
+     */
+    public function resetPassword(): bool
+    {
+
+        if ($this->password_required) {
+            if (isBlank($this->password)) {
+                $this->errors[] = "Password cannot be blank.";
+            }
+            if (!hasLength($this->password, array('min' => 8, 'max' => 255))) {
+                $this->errors[] = "Password must contain 8 or more characters";
+            }
+            if (!preg_match('/[A-Z]/', $this->password)) {
+                $this->errors[] = "Password must contain at least 1 uppercase letter";
+            }
+            if (!preg_match('/[a-z]/', $this->password)) {
+                $this->errors[] = "Password must contain at least 1 lowercase letter";
+            }
+            if (!preg_match('/[0-9]/', $this->password)) {
+                $this->errors[] = "Password must contain at least 1 number";
+            }
+            if (!preg_match('/[^A-Za-z0-9\s]/', $this->password)) {
+                $this->errors[] = "Password must contain at least 1 symbol";
+            }
+        }
+
+        if (!empty($this->errors)) {
+            return false;
+        }
+
+        //check if the user exists
+        $user = $this->getUserByEmail($this->email);
+
+        if (empty($user)) {
+            $this->errors[] = "This user does not exist";
+            return false;
+        }
+
+        if (password_verify($this->password, $user->hashed_password)) {
+            $this->errors[] = "Password cannot be the same as previous";
+            return false;
+        }
+
+        $this->email = $user->email;
+        $this->account_status = $user->account_status;
+        $this->last_name = $user->last_name;
+        $this->first_name = $user->first_name;
+        $this->role = $user->role;
+        $this->phone_number = $user->phone_number;
+        $this->id = $user->id;
+
+        return $this->update();
     }
 
 
@@ -133,9 +193,11 @@ class User extends DatabaseObject
             $this->setHashedPassword();
             // validate password
         } else {
+            echo "Working";
             // password not being updated, skip hashing and validation
             $this->password_required = false;
         }
+
         return parent::update();
     }
 
@@ -187,6 +249,22 @@ class User extends DatabaseObject
                 $this->errors[] = "Password and confirm password must match.";
             }
         }
+
+        if (!isBlank($this->phone_number)) {
+            if (!hasLength($this->phone_number, array('min' => 11, 'max' => 13))) {
+                $this->errors[] = "Phone number must be between 11 and 13 characters.";
+            }
+            if (preg_match('/[A-Z]/', $this->phone_number)) {
+                $this->errors[] = "Phone number cannot contain lowercase letter";
+            }
+            if (preg_match('/[a-z]/', $this->phone_number)) {
+                $this->errors[] = "Phone number cannot contain uppercase letter";
+            }
+            if (preg_match('/[^A-Za-z0-9\s]/', $this->phone_number)) {
+                $this->errors[] = "Phone number cannot contain symbol";
+            }
+        }
+
 
         return $this->errors;
     }

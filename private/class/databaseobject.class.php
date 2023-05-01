@@ -9,7 +9,7 @@ class DatabaseObject
 
     public $errors = [];
 
-    public $id;
+    protected $id;
 
     /**
      * @param $database
@@ -45,19 +45,26 @@ class DatabaseObject
     /**
      * @param int $per_page
      * @param int $offset
+     * @param int|null $user_id
      * @return array|null
      */
-    static public function findAll(int $per_page, int $offset): ?array
+    static public function findAll(int $per_page, int $offset, ?int $user_id): ?array
     {
-        $sql = "SELECT * FROM users ";
-        $sql .= "LIMIT {$per_page} ";
-        $sql .= "OFFSET {$offset}";
+        $sql = "SELECT * FROM " . static::$tableName;
+        if (!empty($user_id)) {
+            $sql .= " WHERE id !='" . self::$database->escape_string($user_id) . "'";
+        }
+        $sql .= " LIMIT {$per_page} ";
+        $sql .= " OFFSET {$offset}";
         return static::findBySql($sql);
     }
 
-    static public function countAll()
+    static public function countAll(?int $user_id)
     {
         $sql = "SELECT COUNT(*) FROM " . static::$tableName;
+        if (!empty($user_id)) {
+            $sql .= " WHERE id !='" . self::$database->escape_string($user_id) . "'";
+        }
         $result_set = self::$database->query($sql);
         $row = $result_set->fetch_array();
         return array_shift($row);
@@ -120,15 +127,22 @@ class DatabaseObject
             }
             return $result;
         } catch (Exception $ex) {
+            $exceptionCode = $ex->getCode();
+            if ($exceptionCode == '1062') {
+                $this->errors[] = "Account already exists. Please sign in";
+                return false;
+            }
             $this->errors[] = $ex->getMessage();
             return false;
         }
-
     }
 
-    protected function update()
+    /**
+     * @return bool
+     */
+    protected function update(): bool
     {
-        $this->validateInput();
+        //$this->validateInput();
         if (!empty($this->errors)) {
             return false;
         }
@@ -199,5 +213,9 @@ class DatabaseObject
     public function updateColumn(string $sql)
     {
         return self::$database->query($sql);
+    }
+
+    public function getId(){
+        return $this->id;
     }
 }

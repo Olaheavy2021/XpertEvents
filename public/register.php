@@ -1,5 +1,7 @@
-<?php require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
-include ('/home/SHU/c2042523/public_html/xpertevents/private/class/client.class.php');
+<?php
+//require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
+//include ('/home/SHU/c2042523/public_html/xpertevents/private/class/client.class.php');
+require_once('../private/initialize.php');
 $page_title = 'Register';
 
 if (isPostRequest()) {
@@ -10,9 +12,9 @@ if (isPostRequest()) {
     $result = $client->register();
 
     if ($result) {
-        $new_id = $client->id;
+        $new_id = $client->getId();
         if (!empty($session)) {
-            $session->message('The client was created successfully.');
+            $session->message('Welcome to XpertEvents, we are at your service.');
             $session->login($client);
         }
         redirectTo(urlFor('/client/index.php'));
@@ -38,25 +40,34 @@ if (isPostRequest()) {
         <form action="<?php echo urlFor('/register.php'); ?>" method="post">
             <!-- Beginning: Input Fields -->
             <label>
-                <input type="email" name="client[email]" value="<?php echo removeSpecialChars($client->email) ?>"
+                <input type="email" required name="client[email]"
+                       value="<?php echo removeSpecialChars($client->email) ?>"
                        placeholder="Enter Email Here">
             </label>
             <label>
-                <input type="text" name="client[first_name]" value="<?php echo removeSpecialChars($client->first_name) ?>"
+                <input type="text" required name="client[first_name]"
+                       value="<?php echo removeSpecialChars($client->first_name) ?>"
                        placeholder="Enter FirstName Here">
             </label>
             <label>
-                <input type="text" name="client[last_name]" value="<?php echo removeSpecialChars($client->last_name) ?>"
+                <input type="text" required name="client[last_name]"
+                       value="<?php echo removeSpecialChars($client->last_name) ?>"
                        placeholder="Enter Lastname Here">
             </label>
             <label>
-                <input type="password" name="client[password]" value="<?php echo removeSpecialChars($client->password) ?>"
+                <input type="password" required name="client[password]"
+                       value="<?php echo removeSpecialChars($client->password) ?>"
                        placeholder="Enter Password Here">
             </label>
             <label>
-                <input type="password" name="client[confirm_password]"
+                <input type="password" required name="client[confirm_password]"
                        value="<?php echo removeSpecialChars($client->confirm_password) ?>"
                        placeholder="Confirm Password Here">
+            </label>
+            <label>
+                <input type="text" required name="client[phone_number]"
+                       value="<?php echo removeSpecialChars($client->phone_number) ?>"
+                       placeholder="Phone Number Here">
             </label>
             <!-- End : Input Fields -->
             <button class="btnn" type="submit">Register</button>

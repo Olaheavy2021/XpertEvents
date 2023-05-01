@@ -2,10 +2,12 @@
 <?php require_once(PRIVATE_PATH . '/class/employee.class.php'); ?>
 <?php require_once(PRIVATE_PATH . '/class/user.class.php'); ?>
 <?php require_once(PRIVATE_PATH . '/class/client.class.php'); ?>
+<?php require_once(PRIVATE_PATH . '/class/prepackagedevent.class.php'); ?>
 <?php requireLogin() ?>
 <?php include SHARED_PATH . '/admin_header.php' ?>
 <?php
 $employees = Employee::getAllEmployee();
+$prepackaged_events = PrepackagedEvent::getAllEvents();
 ?>
 <div class="container">
     <?php include SHARED_PATH . '/admin_navigation.php' ?>
@@ -50,7 +52,7 @@ $employees = Employee::getAllEmployee();
             </div>
             <div class="card">
                 <div class="card-content">
-                    <div class="number">105</div>
+                    <div class="number"><?php echo PrepackagedEvent::getTotalNumberOfEvents()?></div>
                     <div class="card-name">Prepackaged Events</div>
                 </div>
                 <div class="icon-box">
@@ -62,30 +64,22 @@ $employees = Employee::getAllEmployee();
             <div class="list-prepackaged">
                 <div class="heading">
                     <h2>Prepackaged Events</h2>
-                    <a href="" class="btn">View all</a>
+                    <a href="<?php echo urlFor('/admin/prepackage/prepackage_index.php')?>" class="btn">View all</a>
                 </div>
                 <table class="events">
                     <thead>
                     <td>Name</td>
                     <td>Location</td>
-                    <td>Date</td>
+                    <td>Price</td>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Bowling Alley</td>
-                        <td>Halfway</td>
-                        <td>12/01/2023</td>
-                    </tr>
-                    <tr>
-                        <td>Motor Race</td>
-                        <td>Castle Square</td>
-                        <td>1/02/2023</td>
-                    </tr>
-                    <tr>
-                        <td>Sheffield Motor Race</td>
-                        <td>Castle Square</td>
-                        <td>1/02/2023</td>
-                    </tr>
+                    <?php foreach($prepackaged_events as $event) { ?>
+                        <tr>
+                            <td><?php echo $event->getName(); ?></td>
+                            <td><?php echo $event->getLocation();?></td>
+                            <td> &#163 <?php echo  $event->getPrice();?></td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
 
                 </table>

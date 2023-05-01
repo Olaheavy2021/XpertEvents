@@ -10,6 +10,8 @@ class Session {
     public $last_name;
 
     public $role;
+    public $phone_number;
+
     private $last_login;
 
     public const MAX_LOGIN_AGE = 60*60*24; // 1 day
@@ -27,12 +29,13 @@ class Session {
     {
         if($user) {
             // prevent session fixation attacks
-            session_regenerate_id();
-            $this->user_id = $_SESSION['user_id'] = $user->id;
+            session_regenerate_id(true);
+            $this->user_id = $_SESSION['user_id'] = $user->getId();
             $this->email = $_SESSION['email'] = $user->email;
             $this->role = $_SESSION['role'] = $user->role;
             $this->first_name = $_SESSION['first_name'] = $user->first_name;
             $this->last_name = $_SESSION['last_name'] = $user->last_name;
+            $this->phone_number = $_SESSION['phone_number'] = $user->phone_number;
             $this->last_login = $_SESSION['last_login'] = time();
 
             return true;
@@ -59,12 +62,14 @@ class Session {
         unset($_SESSION['first_name']);
         unset($_SESSION['last_name']);
         unset($_SESSION['role']);
+        unset($_SESSION['phone_number']);
         unset($this->user_id);
         unset($this->email);
         unset($this->last_login);
         unset($this->last_name);
         unset($this->first_name);
         unset($this->role);
+        unset($this->phone_number);
         return true;
     }
 

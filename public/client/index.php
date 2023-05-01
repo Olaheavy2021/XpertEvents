@@ -1,6 +1,7 @@
-<?php require_once('../../private/initialize.php'); ?>
-<?php requireLogin() ?>
-<?php include SHARED_PATH . '/client_header.php' ?>
+<?php require_once('../../private/initialize.php');
+requireLogin();
+include SHARED_PATH . '/client_header.php';
+?>
 <div class="container">
     <?php include SHARED_PATH . '/client_navigation.php' ?>
     <section class="main">
@@ -15,25 +16,25 @@
                 <i class="fas fa-glass-cheers"></i>
                 <h3>Manage Guests</h3>
                 <p>Manage guest list for your events</p>
-                <button>Manage Guest</button>
+                <a href="" class="button">Manage</a>
             </div>
             <div class="card">
                 <i class="fas fa-box-open"></i>
                 <h3>Pre-Packaged Events</h3>
                 <p>Book our pre-packaged events</p>
-                <button>Book Events</button>
+                <a href="" class="button">Book</a>
             </div>
             <div class="card">
                 <i class="fas fa-glass-cheers"></i>
                 <h3>Custom Events</h3>
                 <p>View details of your custom events</p>
-                <button>View Details</button>
+                <a href="" class="button">View</a>
             </div>
             <div class="card">
                 <i class="fas fa-user"></i>
                 <h3>Manage Profile</h3>
                 <p>Manage your profile</p>
-                <button>Edit Profile</button>
+                <a href="<?php echo urlFor('/client/profile.php'); ?>" class="button">Profile</a>
             </div>
         </div>
         <section class="main-events">

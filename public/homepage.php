@@ -54,7 +54,7 @@ if (isPostRequest()) {
                               echo removeSpecialChars($user->email); } ?>">
                 </label>
                 <label>
-                    <input type="password" name="user[password]" placeholder="Enter Password Here">
+                    <input type="password" name="user[password]" required placeholder="Enter Password Here">
                 </label>
                 <button class="btnn" type="submit">Login</button>
             </form>

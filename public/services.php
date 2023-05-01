@@ -1,5 +1,8 @@
-<?php require_once('../private/initialize.php'); ?>
-<?php include SHARED_PATH . '/public_header.php' ?>
+<?php
+require_once('../private/initialize.php');
+$page_title = 'Services';
+include SHARED_PATH . '/public_header.php';
+?>
 <div class="main">
     <?php include SHARED_PATH . '/public_navigation.php' ?>
     <div class="section">

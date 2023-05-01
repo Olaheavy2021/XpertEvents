@@ -49,9 +49,189 @@
     font-family: "Lucida Calligraphy";
 }
 
-.servicesCard p{
+.servicesCard p {
     font-size: 17px;
     margin-bottom: 30px;
     line-height: 1.5;
     color: #5e5e5e;
+}
+
+/*Events Page Styling on the Homepage*/
+.events-heading {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 20px auto;
+    font-family: "Lucida Calligraphy", serif;
+
+
+}
+
+.events-heading h1 {
+    font-size: 42px;
+    color: #ED7014;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.events-heading h1::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    display: block;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.events-heading p {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 35px;
+}
+
+.events-container {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #efefef;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.events-about {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.events-image {
+    flex: 1;
+    margin-right: 40px;
+    overflow: hidden;
+}
+
+.events-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    transition: 0.5s ease;
+}
+
+.events-image:hover img {
+    transform: scale(1.2);
+}
+
+.events-content {
+    flex: 1;
+}
+
+.events-content h2 {
+    font-size: 23px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.events-content p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.events-content .read-more {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ED7014;
+    color: #fff;
+    font-size: 19px;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-top: 15px;
+    transition: 0.3s ease;
+}
+
+.events-content .read-more {
+    background-color: #ED7014;
+}
+
+.events-page{
+    width: 100%;
+    background-size: cover;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.60) 50%, rgba(0, 0, 0, 0.60) 50%),
+    url(/public/images/background_image.jpg);
+    background-position: center; /* Center the image */
+    height: 320vh;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .heading {
+        padding: 0px 20px;
+    }
+
+    .heading h1 {
+        font-size: 36px;
+    }
+
+    .heading p {
+        font-size: 17px;
+        margin-bottom: 0px;
+    }
+
+    .events-container {
+        padding: 0px;
+    }
+
+    .events-about {
+        padding: 20px;
+        flex-direction: column;
+    }
+
+    .events-image {
+        margin-right: 0px;
+        margin-bottom: 20px;
+    }
+
+    .events-content p {
+        padding: 0px;
+        font-size: 16px;
+    }
+
+    .events-content .read-more {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 300px) and (min-width: 514px) {
+    .events-page{
+        width: 100%;
+        background-size: cover;
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.60) 50%, rgba(0, 0, 0, 0.60) 50%),
+        url(/public/images/background_image.jpg);
+        background-position: center; /* Center the image */
+        height: 650vh;
+        padding-bottom: 10px;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .events-page{
+        width: 100%;
+        background-size: cover;
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.60) 50%, rgba(0, 0, 0, 0.60) 50%),
+        url(/public/images/background_image.jpg);
+        background-position: center; /* Center the image */
+        height: 150vh;
+        padding-bottom: 10px;
+    }
+
+    .events-image {
+        flex: 1;
+        margin-right: -800px;
+        overflow: hidden;
+    }
 }

@@ -14,8 +14,12 @@ requireLogin() ?>
             <div class="profile-box">
                 <img src="../../public/images/default_avatar.jpg" class="profile-pic" alt="Default avatar">
                 <h3><?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></h3>
-                <h3><?php echo $_SESSION['email'] ?></h3>
-                <h3>+2348134583502</h3>
+                <h3><?php echo $_SESSION['email'] ;?> </h3>
+                <?php
+                if (!empty($_SESSION['phone_number'])) {
+                echo '<h3>' . $_SESSION['phone_number'] . '</h3>';
+                }
+                ?>
                 <button type="button"><a
                             href="<?php echo urlFor('/client/reset_password.php?id=' . removeSpecialChars(encodeUrl($_SESSION['user_id']))) ?>">Reset
                         Password</a></button>

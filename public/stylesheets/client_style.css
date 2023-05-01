@@ -140,14 +140,18 @@ nav a:hover{
     font-size: 12px;
 }
 
-.main-actions .card button{
+.main-actions .card .button{
     background: #ED7014;
     color: #fff;
     padding: 7px 15px;
     border-radius: 10px;
     margin-top: 15px;
     cursor: pointer;
+    width: 100px; /* set width to 100px */
+    text-decoration: none; /* remove underline */
+    display: inline-block; /* make it inline */
 }
+
 
 .main-actions .card button:hover{
     background: rgba(223,70,15,0.856);

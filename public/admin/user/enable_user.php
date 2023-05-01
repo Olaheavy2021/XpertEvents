@@ -3,12 +3,12 @@
 <?php include SHARED_PATH . '/admin_header.php' ?>
 <?php
 if (!isset($_GET['id'])) {
-    redirectTo(urlFor('/admin/user/index.php'));
+    redirectTo(urlFor('/admin/user/user_index.php'));
 }
 $id = $_GET['id'];
 $user = User::findById($id);
 if (!$user) {
-    redirectTo(urlFor('/admin/user/index.php'));
+    redirectTo(urlFor('/admin/user/user_index.php'));
 }
 
 if(isPostRequest()){
@@ -16,7 +16,7 @@ if(isPostRequest()){
     $result = $admin->enableUser($user->id);
     global $session;
     $session->message('The user was enabled successfully');
-    redirectTo(urlFor('/admin/user/index.php'));
+    redirectTo(urlFor('/admin/user/user_index.php'));
 }
 ?>
 <div class="container">
@@ -26,7 +26,7 @@ if(isPostRequest()){
             <p>Enable User</p>
         </div>
         <div class="disableContent">
-            <a class="back-link" href="<?php echo urlFor('/admin/user/index.php') ?>">&laquo; Back to List</a>
+            <a class="back-link" href="<?php echo urlFor('/admin/user/user_index.php') ?>">&laquo; Back to List</a>
             <div class="card">
                 <h3>Are you sure you want to enable this user?</h3>
                 <h3 class="item"><?php echo "Name : " . removeSpecialChars($user->getFullName()) ?></h3>

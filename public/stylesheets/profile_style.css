@@ -44,6 +44,7 @@
     font-weight: 600;
     font-size: 16px;
     margin-top: -10px;
+    text-decoration: none;
 }
 
 .profile-pic {
@@ -62,6 +63,7 @@
     margin-left: -90px;
     margin-bottom: -40px;
     border-radius: 20px;
+    border: 1px solid #ED7014;
 }
 
 
@@ -103,7 +105,37 @@
     font-family: "Lucida Sans", serif;
 }
 
+select {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    appearance: none; /* remove default arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="black" d="M7.41,8.59L12,13.17l4.59-4.58L18,10l-6,6l-6-6L7.41,8.59z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    cursor: pointer;
+}
+
+/* change background color on hover */
+select:hover {
+    background-color: #e5e5e5;
+}
+
+/* change background color when selected */
+select:focus {
+    background-color: #ddd;
+}
+
 .reset-center form input[type="password"]{
+    margin-top: 20px;
+}
+
+.reset-center form input[type="text"]{
     margin-top: 20px;
 }
 
@@ -137,6 +169,53 @@
     color: #ED7014;
     transition: .5s;
 }
+/*Errors*/
+.addUser-error{
+    top: 5px;
+    left: 580px;
+    position: absolute;
+    padding-bottom: 10px;
+}
+.admin-reset-error {
+    top: 5px;
+    left: 580px;
+    position: absolute;
+    padding-bottom: 10px;
+}
+
+.client-reset-error {
+    top: 5px;
+    left: 330px;
+    position: absolute;
+    padding-bottom: 10px;
+}
+
+.errors{
+    display: inline-block;
+    border: 2px solid #ED7014;
+    color: #ED7014;
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: white;
+    font-family: "Lucida Sans";
+}
+
+.errors ul{
+    margin-bottom: 0;
+    padding-left: 1em;
+}
+
+/* Errors */
+@media (min-width: 2560px) {
+    .admin-reset-error {
+        top: 200px;
+        left: 1360px;
+        position: absolute;
+        padding-bottom: 10px;
+    }
+}
+
+
 
 
 
