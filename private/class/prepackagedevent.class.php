@@ -1,4 +1,5 @@
 <?php
+require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
 require_once(PRIVATE_PATH . '/class/event.class.php');
 class PrepackagedEvent extends Event
 {
@@ -163,6 +164,7 @@ class PrepackagedEvent extends Event
                 $permanent_name = rand(100, 10000) . "-" . $_FILES["image"]["name"];
                 $temporary_name = $_FILES['image']['tmp_name'];
                 $uploads_dir = PUBLIC_PATH . '/images/uploads';
+                var_dump( $uploads_dir);
 
                 move_uploaded_file($temporary_name, $uploads_dir . '/' . $permanent_name);
 

@@ -5,15 +5,20 @@ require_once(PRIVATE_PATH . '/class/employee.class.php');
 require_once(PRIVATE_PATH . '/class/user.class.php');
 require_once(PRIVATE_PATH . '/class/client.class.php');
 require_once(PRIVATE_PATH . '/class/prepackagedevent.class.php');
+require_once(PRIVATE_PATH . '/class/customevent.class.php');
 requireLogin();
 include SHARED_PATH . '/admin_header.php';
 
-$employees = Employee::getAllEmployee();
-$current_page = 1;
-$per_page = 5;
-$total_count = PrepackagedEvent::countAll(null);
-$pagination = new Pagination($current_page, $per_page, $total_count);
-$prepackaged_events = User::viewPrepackagedEvents($per_page, $pagination->offset());
+ $employees = Employee::getAllEmployee();
+ $current_page = 1;
+ $per_page = 5;
+ $total_count = PrepackagedEvent::countAll(null);
+ if($total_count>0){
+    $pagination = new Pagination($current_page, $per_page, $total_count);
+    $prepackaged_events = User::viewPrepackagedEvents($per_page, $pagination->offset());
+    var_dump($prepackaged_events);
+ }
+ 
 ?>
 <div class="container">
     <?php include SHARED_PATH . '/admin_navigation.php' ?>
@@ -49,7 +54,7 @@ $prepackaged_events = User::viewPrepackagedEvents($per_page, $pagination->offset
             </div>
             <div class="card">
                 <div class="card-content">
-                    <div class="number">105</div>
+                    <div class="number"><?php echo CustomEvent::getTotalNumberOfEvents()?></div>
                     <div class="card-name">Custom Events</div>
                 </div>
                 <div class="icon-box">
@@ -79,13 +84,21 @@ $prepackaged_events = User::viewPrepackagedEvents($per_page, $pagination->offset
                     <td>Price</td>
                     </thead>
                     <tbody>
-                    <?php foreach($prepackaged_events as $event) { ?>
+                    <?php 
+                    if (!empty($prepackaged_events)) {
+                    foreach($prepackaged_events as $event) { 
+                        ?>
                         <tr>
                             <td><?php echo $event->getName(); ?></td>
                             <td><?php echo $event->getLocation();?></td>
                             <td> &#163 <?php echo  $event->getPrice();?></td>
                         </tr>
-                    <?php } ?>
+                    <?php
+                     } 
+                     }else{
+                         echo "<tr><td colspan='5'>No prepackage event found</td></tr>";
+                     }
+                    ?>
                     </tbody>
 
                 </table>

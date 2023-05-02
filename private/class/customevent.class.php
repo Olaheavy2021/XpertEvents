@@ -230,4 +230,14 @@ class CustomEvent extends Event
 
         return $this->errors;
     }
+
+    /**
+     * @return int
+     */
+    static public function getTotalNumberOfEvents() :int
+    {
+        $sql = "SELECT * FROM custom_events";
+        $result = parent::findBySql($sql);
+        return count($result);
+    }
 }

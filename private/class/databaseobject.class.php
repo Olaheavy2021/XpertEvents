@@ -36,7 +36,6 @@ class DatabaseObject
      */
     static public function setDatabase($database): void
     {
-        global $database;
         self::$database = $database;
     }
 
@@ -70,7 +69,9 @@ class DatabaseObject
      */
     static public function findAll(int $per_page, int $offset, ?int $user_id): ?array
     {
-        $sql = "SELECT * FROM " . static::$tableName;
+        try {
+
+            $sql = "SELECT * FROM " . static::$tableName;
         if (!empty($user_id)) {
             $sql .= " WHERE id !='" . self::$database->escape_string($user_id) . "'";
         }
@@ -80,6 +81,11 @@ class DatabaseObject
         $sql .= " LIMIT {$per_page} ";
         $sql .= " OFFSET {$offset}";
         return static::findBySql($sql);
+            
+        } catch (Exception $e) {
+            var_dump($e);
+        }
+        
     }
 
     static public function countAll(?int $user_id)
@@ -145,11 +151,10 @@ class DatabaseObject
             $sql .= join("', '", array_values($attributes));
             $sql .= "')";
 
-            DatabaseObject::setDatabase($database);
-            $result = $database->query($sql);
+            $result = self::$database->query($sql);
            
             if ($result) {
-                $this->id = $database->insert_id;
+                $this->id = self::$database->insert_id;
             }
             return $result;
         } catch (Exception $ex) {

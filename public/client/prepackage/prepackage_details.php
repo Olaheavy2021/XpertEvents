@@ -8,8 +8,11 @@ include SHARED_PATH . '/client_header.php';
 $current_page = 1;
 $per_page = 5;
 $total_count = PrepackagedEvent::countAll(null);
-$pagination = new Pagination($current_page, $per_page, $total_count);
-$events = PrepackagedEvent::findAll($per_page, $pagination->offset(), null);
+if($total_count > 0){
+    $pagination = new Pagination($current_page, $per_page, $total_count);
+    $events = PrepackagedEvent::findAll($per_page, $pagination->offset(), null);
+}
+
 ?>
 <div class="container">
     <?php include SHARED_PATH . '/client_navigation.php' ?>
@@ -20,7 +23,9 @@ $events = PrepackagedEvent::findAll($per_page, $pagination->offset(), null);
                 <i class="fas fa-user-cog"></i></span>
         </div>
         <section class="main-events">
-            <?php foreach ($events as $event) { ?>
+            <?php 
+            if (!empty($events)) {
+            foreach ($events as $event) { ?>
                 <div class="events-box">
                     <div class="course">
                         <div class="box">
@@ -30,14 +35,20 @@ $events = PrepackagedEvent::findAll($per_page, $pagination->offset(), null);
                             <i class="fas fa-box-open event"></i>
                         </div>
                         <div class="box">
-                            <img src="<?php echo '../../images/uploads/' . $event->getThumbnail() ?>" alt="Thumbnail">
+                            <!-- <img src="<?php echo '../../images/uploads/' . $event->getThumbnail() ?>" alt="Thumbnail"> -->
+                            <img src="<?php echo '/~c2042523/xpertevents/public/images/' . $event->getThumbnail() ?>" alt="Thumbnail">
                         </div>
                         <div class="box">
                             <h3 class="description"><?php echo removeSpecialChars($event->getShortDescription())?></h3>
                         </div>
                     </div>
                 </div>
-            <?php } ?>
+            <?php
+             }
+              } else {
+                    echo "<tr><td colspan='5'>No prepackage event found</td></tr>";
+                }
+              ?>
         </section>
     </section>
 

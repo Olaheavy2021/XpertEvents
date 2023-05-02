@@ -61,6 +61,7 @@ class Event extends DatabaseObject
     static public function getEvents(int $per_page, int $offset): array
     {
         return parent::findAll($per_page, $offset, null);
+        
     }
 
     static public function getEvent(int $id)

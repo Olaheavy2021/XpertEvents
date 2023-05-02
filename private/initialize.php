@@ -1,8 +1,8 @@
 <?php
-include("/home/SHU/c2042523/public_html/xpertevents/private/class/databaseobject.class.php");
-include("/home/SHU/c2042523/public_html/xpertevents/private/class/session.class.php");
-//include("./private/class/session.class.php");
-//include("./private/class/session.class.php");
+require_once("/home/SHU/c2042523/public_html/xpertevents/private/class/databaseobject.class.php");
+require_once("/home/SHU/c2042523/public_html/xpertevents/private/class/session.class.php");
+//require_once("../private/class/databaseobject.class.php");
+//require_once("../private/class/session.class.php");
 ob_start(); // turn on output buffering
 
 // Assign file paths to PHP constants
@@ -30,6 +30,9 @@ require_once('db_credentials.php');
 require_once('user_roles_constants.php');
 require_once('database_functions.php');
 require_once('validation_functions.php');
+
+
+error_reporting(E_WARNING);
 
 $database = db_connect();
 DatabaseObject::setDatabase($database);
