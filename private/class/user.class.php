@@ -1,12 +1,12 @@
 <?php
 require_once(PRIVATE_PATH . '/class/databaseobject.class.php');
+require_once(PRIVATE_PATH . '/class/prepackagedevent.class.php');
 
 class User extends DatabaseObject
 {
     static protected $tableName = "users";
     static protected $dbColumns = ['id', 'first_name', 'last_name', 'email', 'hashed_password', 'role', 'account_status', 'phone_number'];
 
-    protected $id;
     public $first_name;
 
     public $last_name;
@@ -59,7 +59,7 @@ class User extends DatabaseObject
      * @param string $password
      * @return bool
      */
-    public function verifyPassword(string $password): bool
+    private function verifyPassword(string $password): bool
     {
         return password_verify($password, $this->hashed_password);
     }
@@ -73,38 +73,38 @@ class User extends DatabaseObject
         $user = $this->getUserByEmail($this->email);
 
         if (!$user) {
-            $this->errors[] = "The password or email is invalid. ";
-            return false;
+            $this->errors[] = "The password or email is invalid.";
         }
 
         $this->hashed_password = $user->hashed_password;
 
         if (!$this->verifyPassword($this->password)) {
-            $this->errors[] = "The password or email is invalid. ";
-            return false;
+            $this->errors[] = "The password or email is invalid.";
         }
 
         //check if the account is not disabled
         if (!$user->account_status) {
             $this->errors[] = "This account has been disabled. Please contact support.";
-            return false;
         }
 
-        //create a session for the user
-        global $session;
-        $sessionResult = $session->login($user);
+        if (empty($this->errors)) {
+            //create a session for the user
+            global $session;
+            $sessionResult = $session->login($user);
 
-        if ($sessionResult) {
-            //redirect the user accordingly to their landing page
-            if ($user->role === CLIENT_ROLE) {
-                redirectTo(urlFor('/client/index.php'));
-            } elseif ($user->role === ADMIN_ROLE || $user->role === SALESSTAFF_ROLE || $user->role === MANAGER_ROLE) {
-                redirectTo(urlFor('/admin/index.php'));
-            } else {
-                $this->errors[] = "Login was unsuccessful";
+            if ($sessionResult) {
+                //redirect the user accordingly to their landing page
+                if ($user->role === CLIENT_ROLE) {
+                    redirectTo(urlFor('/client/index.php'));
+                } elseif ($user->role === ADMIN_ROLE || $user->role === SALESSTAFF_ROLE || $user->role === MANAGER_ROLE) {
+                    redirectTo(urlFor('/admin/index.php'));
+                } else {
+                    $this->errors[] = "Login was unsuccessful";
+                }
             }
-        }
 
+        }
+        echo alertErrorMessage($this->errors);
         return false;
     }
 
@@ -174,6 +174,25 @@ class User extends DatabaseObject
         return $this->update();
     }
 
+    /**
+     * @return array
+     */
+    static public function viewPrepackagedEvents(): array
+    {
+        return PrepackagedEvent::getEvents();
+    }
+
+    protected function getUserByEmail(string $email)
+    {
+        $sql = "SELECT * FROM " . static::$tableName . " ";
+        $sql .= "WHERE email='" . self::$database->escape_string($email) . "'";
+        $obj_array = static::findBySql($sql);
+        if (!empty($obj_array)) {
+            return array_shift($obj_array);
+        } else {
+            return false;
+        }
+    }
 
     /**
      * @return bool
@@ -269,16 +288,5 @@ class User extends DatabaseObject
         return $this->errors;
     }
 
-    static public function getUserByEmail(string $email)
-    {
-        $sql = "SELECT * FROM " . static::$tableName . " ";
-        $sql .= "WHERE email='" . self::$database->escape_string($email) . "'";
-        $obj_array = static::findBySql($sql);
-        if (!empty($obj_array)) {
-            return array_shift($obj_array);
-        } else {
-            return false;
-        }
-    }
 
 }

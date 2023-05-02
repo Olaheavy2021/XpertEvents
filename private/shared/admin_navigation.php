@@ -26,6 +26,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
             echo '><i class="fas fa-users-cog"></i><div class="title">Manage Users</div></a></li>';
         }
         ?>
+        <?php
+        if ($_SESSION['role'] === ADMIN_ROLE) {
+            echo '<li><a href="' . urlFor('/admin/user/enquiry_index.php') . '"';
+            if ($current_page == 'enquiry_index.php') {
+                echo 'class="active"';
+            }
+            echo '><i class="fas fa-users-cog"></i><div class="title">Customer Enquiries</div></a></li>';
+        }
+        ?>
         <li>
             <a href="<?php echo urlFor('/admin/prepackage/prepackage_index.php'); ?>"
                 <?php if ($current_page == 'prepackage_index.php') echo 'class="active"'; ?>>
@@ -34,7 +43,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="<?php echo urlFor('/admin/custom/custom_index.php'); ?>"
+                <?php if ($current_page == 'custom_index.php') echo 'class="active"'; ?>>
                 <i class="fas fa-glass-cheers"></i>
                 <div class="title">Custom Events</div>
             </a>

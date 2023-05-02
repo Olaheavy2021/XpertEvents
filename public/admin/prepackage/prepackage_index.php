@@ -4,7 +4,7 @@ require_once(PRIVATE_PATH . '/class/prepackagedevent.class.php');
 require_once(PRIVATE_PATH . '/class/pagination.class.php');
 requireLogin();
 include SHARED_PATH . '/admin_header.php';
-//Fetch all the users and paginate the page
+//Fetch all the events and paginate the page
 $current_page = $_GET['page'] ?? 1;
 $per_page = 5;
 $total_count = PrepackagedEvent::countAll(null);
@@ -19,7 +19,8 @@ $events = PrepackagedEvent::findAll($per_page, $pagination->offset(), null);
             <div>
 
                 <?php if ($_SESSION['role'] === ADMIN_ROLE) { ?>
-                    <button class="addNewUser"><a href="<?php echo urlFor('/admin/prepackage/create.php'); ?>">Add Event</a></button>
+                    <button class="addNewUser"><a href="<?php echo urlFor('/admin/prepackage/create.php'); ?>">Add
+                            Event</a></button>
                 <?php } ?>
 
             </div>
@@ -36,25 +37,32 @@ $events = PrepackagedEvent::findAll($per_page, $pagination->offset(), null);
                 </tr>
                 </thead>
                 <tbody>
-                <?php for ($i = 0; $i < count($events); $i++) { ?>
-                    <tr>
-                        <td><?php echo $i + 1 ?></td>
-                        <td><?php echo removeSpecialChars($events[$i]->getName()); ?></td>
-                        <td><?php echo removeSpecialChars($events[$i]->getLocation()); ?></td>
-                        <td>&#163 <?php echo removeSpecialChars($events[$i]->getPrice()); ?></td>
-                        <td>
-                            <?php
-                            if ($_SESSION['role'] === ADMIN_ROLE) {
-                                echo '<button class="tableEye"><a href="' . urlFor('/admin/prepackage/details.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-eye"></i></a></button>';
-                                echo '<button class="tableEdit"><a href="' . urlFor('/admin/prepackage/edit.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-edit"></i></a></button>';
-                                echo '<button class="tableDelete"><a href="' . urlFor('/admin/prepackage/disable.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-trash"></i></a></button>';
-                            } else {
-                                echo '<button class="tableEdit"><a href="' . urlFor('/admin/prepackage/details.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-eye"></i></a></button>';
-                            }
-                            ?>
-                        </td>
-                    </tr>
-                <?php } ?>
+                <?php if (!empty($events)) {
+                    for ($i = 0; $i < count($events); $i++) {
+                        ?>
+                        <tr>
+                            <td><?php echo $i + 1 ?></td>
+                            <td><?php echo removeSpecialChars($events[$i]->getName()); ?></td>
+                            <td><?php echo removeSpecialChars($events[$i]->getLocation()); ?></td>
+                            <td>&#163 <?php echo removeSpecialChars($events[$i]->getPrice()); ?></td>
+                            <td>
+                                <?php
+                                if ($_SESSION['role'] === ADMIN_ROLE) {
+                                    echo '<button class="tableEye"><a href="' . urlFor('/admin/prepackage/details.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-eye"></i></a></button>';
+                                    echo '<button class="tableEdit"><a href="' . urlFor('/admin/prepackage/edit.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-edit"></i></a></button>';
+                                    //echo '<button class="tableDelete"><a href="' . urlFor('/admin/prepackage/disable.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-trash"></i></a></button>';
+                                } else {
+                                    echo '<button class="tableEye"><a href="' . urlFor('/admin/prepackage/details.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-eye"></i></a></button>';
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    echo "<tr><td colspan='5'>No prepackage event found</td></tr>";
+                }
+                ?>
                 </tbody>
             </table>
         </div>

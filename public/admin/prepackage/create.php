@@ -1,11 +1,13 @@
 <?php
 require_once('../../../private/initialize.php');
+require_once(PRIVATE_PATH . '/class/prepackagedevent.class.php');
+require_once(PRIVATE_PATH . '/class/admin.class.php');
 requireLogin();
 include SHARED_PATH . '/admin_header.php';
 if (isPostRequest()) {
     $args = $_POST['event'];
     $event = new PrepackagedEvent($args);
-    $event->createEvent();
+    Admin::createPrepackagedEvent($event);
 } else {
     $event = new PrepackagedEvent;
 }

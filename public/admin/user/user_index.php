@@ -1,15 +1,17 @@
-<?php require_once('../../../private/initialize.php'); ?>
-<?php require_once(PRIVATE_PATH . '/class/user.class.php'); ?>
-<?php require_once(PRIVATE_PATH . '/class/pagination.class.php'); ?>
-<?php requireLogin() ?>
-<?php include SHARED_PATH . '/admin_header.php' ?>
 <?php
+require_once('../../../private/initialize.php');
+require_once(PRIVATE_PATH . '/class/user.class.php');
+require_once(PRIVATE_PATH . '/class/admin.class.php');
+require_once(PRIVATE_PATH . '/class/pagination.class.php');
+requireLogin();
+include SHARED_PATH . '/admin_header.php';
+
 //Fetch all the users and paginate the page
 $current_page = $_GET['page'] ?? 1;
 $per_page = 5;
 $total_count = User::countAll($_SESSION['user_id']);
 $pagination = new Pagination($current_page, $per_page, $total_count);
-$users = User::findAll($per_page, $pagination->offset(), $_SESSION['user_id']);
+$users = Admin::viewUsers($per_page, $pagination->offset(), $_SESSION['user_id']);
 ?>
 <div class="container">
     <?php include SHARED_PATH . '/admin_navigation.php' ?>
@@ -33,23 +35,31 @@ $users = User::findAll($per_page, $pagination->offset(), $_SESSION['user_id']);
                 </tr>
                 </thead>
                 <tbody>
-                <?php for ($i = 0; $i < count($users); $i++) { ?>
-                    <tr>
-                        <td><?php echo $i + 1 ?></td>
-                        <td><?php echo removeSpecialChars($users[$i]->first_name) . " " . removeSpecialChars($users[$i]->last_name); ?></td>
-                        <td><?php echo removeSpecialChars($users[$i]->email); ?></td>
-                        <td><?php echo removeSpecialChars(strtolower($users[$i]->role)); ?></td>
-                        <td>
-                            <?php
-                            if (empty($users[$i]->account_status)) {
-                                echo '<button class="tableEye"><a href="' . urlFor('/admin/user/enable_user.php?id=' . removeSpecialChars(encodeUrl($users[$i]->getId()))) . '"><i class="fas fa-trash-restore"></i></a></button>';
-                            } else {
-                                echo '<button class="tableDelete"><a href="' . urlFor('/admin/user/disable_user.php?id=' . removeSpecialChars(encodeUrl($users[$i]->getId()))) . '"><i class="fas fa-trash"></i></a></button>';
-                            }
-                            ?>
-                        </td>
-                    </tr>
-                <?php } ?>
+
+                <?php
+                if (!empty($users)) {
+                    for ($i = 0; $i < count($users); $i++) {
+                        ?>
+                        <tr>
+                            <td><?php echo $i + 1 ?></td>
+                            <td><?php echo removeSpecialChars($users[$i]->first_name) . " " . removeSpecialChars($users[$i]->last_name); ?></td>
+                            <td><?php echo removeSpecialChars($users[$i]->email); ?></td>
+                            <td><?php echo removeSpecialChars(strtolower($users[$i]->role)); ?></td>
+                            <td>
+                                <?php
+                                if (empty($users[$i]->account_status)) {
+                                    echo '<button class="tableEye"><a href="' . urlFor('/admin/user/enable_user.php?id=' . removeSpecialChars(encodeUrl($users[$i]->getId()))) . '"><i class="fas fa-trash-restore"></i></a></button>';
+                                } else {
+                                    echo '<button class="tableDelete"><a href="' . urlFor('/admin/user/disable_user.php?id=' . removeSpecialChars(encodeUrl($users[$i]->getId()))) . '"><i class="fas fa-trash"></i></a></button>';
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    echo "<tr><td colspan='5'>No user found</td></tr>";
+                } ?>
                 </tbody>
             </table>
         </div>

@@ -7,7 +7,7 @@
 <?php include SHARED_PATH . '/admin_header.php' ?>
 <?php
 $employees = Employee::getAllEmployee();
-$prepackaged_events = PrepackagedEvent::getAllEvents();
+$prepackaged_events = User::viewPrepackagedEvents();
 ?>
 <div class="container">
     <?php include SHARED_PATH . '/admin_navigation.php' ?>

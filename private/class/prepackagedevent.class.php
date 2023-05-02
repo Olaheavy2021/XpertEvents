@@ -1,12 +1,12 @@
 <?php
-
+require_once(PRIVATE_PATH . '/class/event.class.php');
 class PrepackagedEvent extends Event
 {
     static protected $tableName = "prepackaged_events";
     static protected $dbColumns = ['id', 'name', 'description', 'location', 'event_date', 'price', 'thumbnail', 'event_status'];
-    public $thumbnail;
+    protected $thumbnail;
 
-    public $event_status;
+    protected $event_status;
 
     public function __construct($args = [])
     {
@@ -22,41 +22,18 @@ class PrepackagedEvent extends Event
     /**
      * @return string
      */
-    public function getName():string
-    {
-        return $this->name;
-    }
-
-    public function getLocation(): string
-    {
-        return $this->location;
-    }
-
-    public function getDescription():string
-    {
-        return $this->description;
-    }
-
     public function getThumbnail():string
     {
         return $this->thumbnail;
     }
 
-    public function getEventDate():string
-    {
-        return $this->event_date;
-    }
-
+    /**
+     * @return string
+     */
     public function getEventStatus():string
     {
         return $this->event_status;
     }
-
-    public function getPrice():string
-    {
-        return $this->price;
-    }
-
 
     /**
      * @return bool
@@ -129,7 +106,7 @@ class PrepackagedEvent extends Event
     /**
      * @return array
      */
-    static public function getAllEvents(): array
+    static public function getEvents(): array
     {
         $sql = "SELECT * FROM `prepackaged_events` ";
         $sql .= "LIMIT 5";

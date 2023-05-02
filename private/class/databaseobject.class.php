@@ -54,6 +54,9 @@ class DatabaseObject
         if (!empty($user_id)) {
             $sql .= " WHERE id !='" . self::$database->escape_string($user_id) . "'";
         }
+        if(static::$tableName == "prepackaged_events" || static::$tableName == "custom_events"){
+            $sql .= " ORDER BY event_date ";
+        }
         $sql .= " LIMIT {$per_page} ";
         $sql .= " OFFSET {$offset}";
         return static::findBySql($sql);

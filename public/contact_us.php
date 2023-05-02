@@ -2,7 +2,15 @@
 require_once('../private/initialize.php');
 $page_title = 'Contact Us';
 //require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
-include SHARED_PATH . '/public_header.php'
+include SHARED_PATH . '/public_header.php';
+
+if (isPostRequest()) {
+    $args = $_POST['enquiry'];
+    $enquiry = new Enquiry($args);
+    Client::makeEnquiry($enquiry);
+} else {
+    $enquiry = new Enquiry();
+}
 ?>
 <div class="main">
     <?php include SHARED_PATH . '/public_navigation.php' ?>
@@ -46,18 +54,26 @@ include SHARED_PATH . '/public_header.php'
                 <!-- Contact Form Header -->
                 <h2>Send Message</h2>
                 <!-- Beginning: Input Fields -->
-                <label>
-                    <input type="text" name="email" placeholder="Enter Full name Here">
-                </label>
-                <label>
-                    <input type="text" name="" placeholder="Enter Email Here">
-                </label>
-                <label>Type your Message....</label>
-                <textarea rows="60" cols="20">
-                </textarea>
-                <button class="btnn"><a href="#">Send</a></button>
+                <form action="<?php echo urlFor('/contact_us.php') ?>" method="post">
+                    <label>
+                        <input type="text" name="enquiry[full_name]" required
+                               value="<?php echo removeSpecialChars($enquiry->getFullName()) ?>"
+                               placeholder="Enter Full name Here">
+                    </label>
+                    <label>
+                        <input type="text" name="enquiry[email]" required
+                               value="<?php echo removeSpecialChars($enquiry->getEmail()) ?>"
+                               placeholder="Enter Email Here">
+                    </label>
+                    <p style="color: white; margin-top: 2px;font-family:'Lucida Calligraphy',serif;">Enter your
+                        message here</p>
+                    <textarea rows="5" cols="45" name="enquiry[message]" required>
+                        <?php echo removeSpecialChars($enquiry->getMessage()) ?>
+                    </textarea>
+                    <button class="btnn" type="submit">Send</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
-<?php include SHARED_PATH . '/public_footer.php'?>
+<?php include SHARED_PATH . '/public_footer.php' ?>

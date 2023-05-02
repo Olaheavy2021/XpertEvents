@@ -19,7 +19,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="<?php echo urlFor('/client/prepackage/prepackage_details.php') ?>"
+                <?php if ($current_page == 'prepackage_details.php') echo 'class="active"'; ?>>
                 <i class="fas fa-box-open"></i>
                 <span class="nav-item">Prepackaged Events</span>
             </a>

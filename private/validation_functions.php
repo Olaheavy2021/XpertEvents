@@ -136,23 +136,3 @@ function hasValidEmailFormat($value): bool
     $email_regex = '/\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\Z/i';
     return preg_match($email_regex, $value) === 1;
 }
-
-// * Validates uniqueness of username
-// * For new records, provide only the username.
-// * For existing records, provide current ID as second argument
-/**
- * @param $email
- * @param string $current_id
- * @return bool
- */
-function hasUniqueUsername($email, string $current_id="0"): bool
-{
-    $user = User::getUserByEmail($email);
-    if($user === false || $user->id == $current_id) {
-        // is unique
-        return true;
-    } else {
-        // not unique
-        return false;
-    }
-}

@@ -7,7 +7,7 @@ if (isPostRequest()) {
     $id = $_GET['id'];
     $args = $_POST['event'];
     $event = new PrepackagedEvent($args);
-    $event->editEvent($id);
+    Admin::editPrepackagedEvent($event, $id);
 }else{
     if (!isset($_GET['id'])) {
         redirectTo(urlFor('/admin/prepackage/prepackage_index.php'));

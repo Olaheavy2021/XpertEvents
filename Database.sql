@@ -18,8 +18,16 @@ CREATE TABLE prepackaged_events
     location     VARCHAR(255) NOT NULL,
     price        INT(11) NOT NULL,
     description  TEXT         NOT NULL,
-    thumbnail    BLOB         NOT NULL,
+    thumbnail    TEXT         NOT NULL,
     event_date   DATE         NOT NULL,
     event_status BOOLEAN DEFAULT TRUE
-
 )
+
+CREATE TABLE customer_enquiry
+(
+    id        INT(11) AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email     VARCHAR(255) NOT NULL,
+    message   TEXT         NOT NULL
+)
+

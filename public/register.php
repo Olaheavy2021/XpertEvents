@@ -29,9 +29,9 @@ if (isPostRequest()) {
 <div class="main">
     <?php include SHARED_PATH . '/public_navigation.php'; ?>
 
-    <div class="registerError">
-        <?php echo displayErrors($client->errors); ?>
-    </div>
+<!--    <div class="registerError">-->
+<!--        --><?php //echo displayErrors($client->errors); ?>
+<!--    </div>-->
 
 
     <div class="registrationForm">
