@@ -19,6 +19,7 @@ class Client extends User
         if(empty($this->errors)){
             $this->role = CLIENT_ROLE;
             $this->account_status = true;
+        
             $result = parent::create();
             if($result){
                 return true;

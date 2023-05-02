@@ -1,6 +1,6 @@
 <?php
-//include("/home/SHU/c2042523/public_html/xpertevents/private/class/databaseobject.class.php");
-//include("/home/SHU/c2042523/public_html/xpertevents/private/class/session.class.php");
+include("/home/SHU/c2042523/public_html/xpertevents/private/class/databaseobject.class.php");
+include("/home/SHU/c2042523/public_html/xpertevents/private/class/session.class.php");
 //include("./private/class/session.class.php");
 //include("./private/class/session.class.php");
 ob_start(); // turn on output buffering
@@ -30,24 +30,6 @@ require_once('db_credentials.php');
 require_once('user_roles_constants.php');
 require_once('database_functions.php');
 require_once('validation_functions.php');
-
-// Load class definitions manually
-
-// -> Individually
-// require_once('classes/bicycle.class.php');
-
-// -> All classes in directory
-foreach(glob('class/*.class.php') as $file) {
-    require_once($file);
-}
-
-// Autoload class definitions
-function my_autoload($class) {
-    if(preg_match('/\A\w+\Z/', $class)) {
-        include('class/' . $class . '.class.php');
-    }
-}
-spl_autoload_register('my_autoload');
 
 $database = db_connect();
 DatabaseObject::setDatabase($database);

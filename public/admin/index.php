@@ -1,11 +1,13 @@
-<?php require_once('../../private/initialize.php'); ?>
-<?php require_once(PRIVATE_PATH . '/class/employee.class.php'); ?>
-<?php require_once(PRIVATE_PATH . '/class/user.class.php'); ?>
-<?php require_once(PRIVATE_PATH . '/class/client.class.php'); ?>
-<?php require_once(PRIVATE_PATH . '/class/prepackagedevent.class.php'); ?>
-<?php requireLogin() ?>
-<?php include SHARED_PATH . '/admin_header.php' ?>
-<?php
+<?php 
+//require_once('../../private/initialize.php');
+require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
+require_once(PRIVATE_PATH . '/class/employee.class.php');
+require_once(PRIVATE_PATH . '/class/user.class.php');
+require_once(PRIVATE_PATH . '/class/client.class.php');
+require_once(PRIVATE_PATH . '/class/prepackagedevent.class.php');
+requireLogin();
+include SHARED_PATH . '/admin_header.php';
+
 $employees = Employee::getAllEmployee();
 $current_page = 1;
 $per_page = 5;

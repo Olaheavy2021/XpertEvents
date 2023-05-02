@@ -1,7 +1,8 @@
 <?php
-require_once('../private/initialize.php');
+//require_once('../private/initialize.php');
+require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
+require_once(PRIVATE_PATH . '/class/enquiry.class.php');
 $page_title = 'Contact Us';
-//require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
 include SHARED_PATH . '/public_header.php';
 
 if (isPostRequest()) {

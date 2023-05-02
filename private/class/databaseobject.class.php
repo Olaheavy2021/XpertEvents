@@ -36,6 +36,7 @@ class DatabaseObject
      */
     static public function setDatabase($database): void
     {
+        global $database;
         self::$database = $database;
     }
 
@@ -136,25 +137,31 @@ class DatabaseObject
             if (!empty($this->errors)) {
                 return false;
             }
-
+        
             $attributes = $this->sanitizedAttributes();
             $sql = "INSERT INTO " . static::$tableName . " (";
             $sql .= join(', ', array_keys($attributes));
             $sql .= ") VALUES ('";
             $sql .= join("', '", array_values($attributes));
             $sql .= "')";
-            $result = self::$database->query($sql);
+
+            DatabaseObject::setDatabase($database);
+            $result = $database->query($sql);
+           
             if ($result) {
-                $this->id = self::$database->insert_id;
+                $this->id = $database->insert_id;
             }
             return $result;
         } catch (Exception $ex) {
+            echo $ex->getMessage();
             $exceptionCode = $ex->getCode();
             if ($exceptionCode == '1062') {
                 $this->errors[] = "Account already exists. Please sign in";
+                echo alertErrorMessage($this->errors);
                 return false;
             }
             $this->errors[] = $ex->getMessage();
+            echo alertErrorMessage($this->errors);
             return false;
         }
     }

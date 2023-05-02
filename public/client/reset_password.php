@@ -1,5 +1,6 @@
 <?php
-require_once('../../private/initialize.php');
+//require_once('../../private/initialize.php');
+require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
 requireLogin();
 include SHARED_PATH . '/client_header.php';
 require_once(PRIVATE_PATH . '/class/client.class.php');

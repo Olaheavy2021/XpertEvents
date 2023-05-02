@@ -1,5 +1,7 @@
 <?php
-require_once('../../../private/initialize.php');
+// require_once('../../../private/initialize.php');
+require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
+require_once(PRIVATE_PATH . '/class/prepackagedevent.class.php');
 requireLogin();
 include SHARED_PATH . '/client_header.php';
 //load the events from the database
