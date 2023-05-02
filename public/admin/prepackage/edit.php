@@ -1,18 +1,18 @@
 <?php
 require_once('../../../private/initialize.php');
+require_once(PRIVATE_PATH . '/class/admin.class.php');
 requireLogin();
 include SHARED_PATH . '/admin_header.php';
+$id = $_GET['id'];
 $event = new PrepackagedEvent();
 if (isPostRequest()) {
-    $id = $_GET['id'];
     $args = $_POST['event'];
     $event = new PrepackagedEvent($args);
-    Admin::editPrepackagedEvent($event, $id);
+    return Admin::editPrepackagedEvent($event, $id);
 }else{
     if (!isset($_GET['id'])) {
         redirectTo(urlFor('/admin/prepackage/prepackage_index.php'));
     }
-    $id = $_GET['id'];
     $event = PrepackagedEvent::findById($id);
     if (!$event) {
         redirectTo(urlFor('/admin/prepackage/prepackage_index.php'));
@@ -25,9 +25,6 @@ if (isPostRequest()) {
     <div class="userTable">
         <div class="userTableHeader">
             <p>Edit Prepackaged Events</p>
-        </div>
-        <div class="admin-reset-error">
-            <?php echo displayErrors($event->errors); ?>
         </div>
         <div class="disableContent">
             <a class="back-link" href="<?php echo urlFor('/admin/prepackage/prepackage_index.php') ?>">&laquo; Back to

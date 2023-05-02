@@ -18,9 +18,6 @@ if (isPostRequest()) {
         <div class="userTableHeader">
             <p>Add Prepackaged Events</p>
         </div>
-        <div class="admin-reset-error">
-            <?php echo displayErrors($event->errors); ?>
-        </div>
         <div class="disableContent">
             <a class="back-link" href="<?php echo urlFor('/admin/prepackage/prepackage_index.php') ?>">&laquo; Back to
                 List</a>
@@ -36,7 +33,7 @@ if (isPostRequest()) {
                                     <label>Name</label>
                                     <input type="text" name="event[name]"
                                            value="<?php echo removeSpecialChars($event->getName()) ?>"
-                                           placeholder="Enter your name" required>
+                                           placeholder="Enter event name" required>
                                 </div>
 
                                 <div class="input-field">

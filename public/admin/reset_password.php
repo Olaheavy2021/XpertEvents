@@ -24,9 +24,6 @@ if (isPostRequest()) {
             <p>Reset Password</p>
         </div>
         <div class="tableSection">
-            <div class="admin-reset-error">
-                <?php echo displayErrors($employee->errors); ?>
-            </div>
             <div class="reset-container">
                 <div class="reset-center">
                     <div class="reset-header">Reset Password Form</div>

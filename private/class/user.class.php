@@ -28,6 +28,7 @@ class User extends DatabaseObject
 
     public function __construct($args = [])
     {
+        $this->id = $args['id'] ?? '';
         $this->first_name = $args['first_name'] ?? '';
         $this->last_name = $args['last_name'] ?? '';
         $this->email = $args['email'] ?? '';
@@ -45,6 +46,14 @@ class User extends DatabaseObject
     public function getFullName(): string
     {
         return $this->first_name . " " . $this->last_name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail():string
+    {
+        return $this->email;
     }
 
     /**
@@ -146,43 +155,46 @@ class User extends DatabaseObject
             }
         }
 
-        if (!empty($this->errors)) {
-            return false;
-        }
-
         //check if the user exists
         $user = $this->getUserByEmail($this->email);
 
         if (empty($user)) {
             $this->errors[] = "This user does not exist";
+            echo alertErrorMessage($this->errors);
             return false;
         }
 
         if (password_verify($this->password, $user->hashed_password)) {
             $this->errors[] = "Password cannot be the same as previous";
-            return false;
         }
 
-        $this->email = $user->email;
-        $this->account_status = $user->account_status;
-        $this->last_name = $user->last_name;
-        $this->first_name = $user->first_name;
-        $this->role = $user->role;
-        $this->phone_number = $user->phone_number;
-        $this->id = $user->id;
+        if (empty($this->errors)) {
+            $this->email = $user->email;
+            $this->account_status = $user->account_status;
+            $this->last_name = $user->last_name;
+            $this->first_name = $user->first_name;
+            $this->role = $user->role;
+            $this->phone_number = $user->phone_number;
+            $this->id = $user->id;
 
-        return $this->update();
+            return $this->update();
+        }
+
+        echo alertErrorMessage($this->errors);
+        return false;
     }
 
     /**
+     * @param int $per_page
+     * @param int $offset
      * @return array
      */
-    static public function viewPrepackagedEvents(): array
+    static public function viewPrepackagedEvents(int $per_page, int $offset): array
     {
-        return PrepackagedEvent::getEvents();
+        return PrepackagedEvent::getEvents($per_page, $offset);
     }
 
-    protected function getUserByEmail(string $email)
+    static public function getUserByEmail(string $email)
     {
         $sql = "SELECT * FROM " . static::$tableName . " ";
         $sql .= "WHERE email='" . self::$database->escape_string($email) . "'";

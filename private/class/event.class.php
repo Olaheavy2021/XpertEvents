@@ -53,6 +53,21 @@ class Event extends DatabaseObject
         return $this->price;
     }
 
+    /**
+     * @param int $per_page
+     * @param int $offset
+     * @return array
+     */
+    static public function getEvents(int $per_page, int $offset): array
+    {
+        return parent::findAll($per_page, $offset, null);
+    }
+
+    static public function getEvent(int $id)
+    {
+        return parent::findById($id);
+    }
+
     public function getShortDescription(): string
     {
         return strlen($this->description) > 300 ? substr($this->description, 0, 300) . "..." : $this->description;

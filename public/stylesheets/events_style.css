@@ -12,9 +12,8 @@
 .prepackage-container form {
     position: relative;
     margin-top: 16px;
-    min-height: 490px;
+    min-height: 580px;
     background-color: #fff;
-    overflow: hidden;
 }
 
 .prepackage-container form .form {

@@ -2,27 +2,37 @@
 require_once('../../../private/initialize.php');
 require_once(PRIVATE_PATH . '/class/customevent.class.php');
 require_once(PRIVATE_PATH . '/class/salesstaff.class.php');
+require_once(PRIVATE_PATH . '/class/employee.class.php');
 requireLogin();
 include SHARED_PATH . '/admin_header.php';
+$id = $_GET['id'];
+$event = new CustomEvent();
 if (isPostRequest()) {
     $args = $_POST['event'];
     $event = new CustomEvent($args);
-    SalesStaff::createCustomEvent($event);
+    echo $id;
+    SalesStaff::editCustomEvent($event, $id);
 } else {
-    $event = new CustomEvent;
+    if (!isset($id)) {
+        redirectTo(urlFor('/admin/prepackage/prepackage_index.php'));
+    }
+    $event = Employee::viewCustomEvent($id);
+    if (!$event) {
+        redirectTo(urlFor('/admin/prepackage/prepackage_index.php'));
+    }
 }
 ?>
 <div class="container">
     <?php include SHARED_PATH . '/admin_navigation.php' ?>
     <div class="userTable">
         <div class="userTableHeader">
-            <p>Add Custom Events</p>
+            <p>Edit Custom Events</p>
         </div>
         <div class="disableContent">
             <a class="back-link" href="<?php echo urlFor('/admin/custom/custom_index.php') ?>">&laquo; Back to
                 List</a>
             <div class="prepackage-container">
-                <form action="<?php echo urlFor('/admin/custom/create.php') ?>" method="post">
+                <form action="<?php echo urlFor('/admin/custom/edit.php?id=' . removeSpecialChars(encodeUrl($id)))?>" method="post">
                     <div class="form first">
                         <div class="details">
                             <span class="title">Custom Event Details</span>
@@ -119,7 +129,8 @@ if (isPostRequest()) {
                             <span class="title">Brief Description</span>
                             <textarea name="event[description]"
                                       value="<?php echo removeSpecialChars($event->getDescription()) ?>"
-                                      placeholder="Enter text here" required></textarea>
+                                      placeholder="Enter text here"
+                                      required><?php echo removeSpecialChars($event->getDescription()) ?></textarea>
                             <button class="nextBtn">
                                 <span class="btnText">Submit</span>
                                 <i class="uil uil-navigator"></i>

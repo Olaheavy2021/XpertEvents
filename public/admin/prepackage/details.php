@@ -52,7 +52,8 @@ if (!$event) {
                                 <div class="input-field">
                                     <label>Price</label>
                                     <input readonly type="number"
-                                           value="<?php echo removeSpecialChars($event->getPrice()) ?>" name="event[price]">
+                                           value="<?php echo removeSpecialChars($event->getPrice()) ?>"
+                                           name="event[price]">
                                 </div>
                                 <div class="input-field">
                                     <label>Status</label>
@@ -68,10 +69,12 @@ if (!$event) {
                                       value="<?php echo removeSpecialChars($event->getDescription()) ?>"
                                       placeholder="Enter text here"><?php echo removeSpecialChars($event->getDescription()) ?></textarea>
                             <div class="thumbnail">
-                                <img height="250px" src="<?php echo '../../images/uploads/' . $event->getThumbnail() ?>"/>
+                                <img height="250px"
+                                     src="<?php echo '../../images/uploads/' . $event->getThumbnail() ?>"/>
                             </div>
                         </div>
                     </div>
+                </form>
             </div>
         </div>
     </div>

@@ -57,6 +57,7 @@ class PrepackagedEvent extends Event
                 redirectTo(urlFor('/admin/prepackage/prepackage_index.php'));
             }
         }
+        echo alertErrorMessage($this->errors);
         return false;
     }
 
@@ -64,14 +65,13 @@ class PrepackagedEvent extends Event
      * @param $id
      * @return bool
      */
-    public function editEvent($id): bool
+    public function editEvent(string $id): bool
     {
         $event = PrepackagedEvent::findById($id);
         //validate the form
         $this->validateInput();
 
         if (!empty($_FILES["image"]["name"])) {
-            var_dump("Checking image");
             $this->thumbnail = $this->processImage();
             $this->event_status = $event->event_status;
             $this->id = $event->id;
@@ -80,6 +80,7 @@ class PrepackagedEvent extends Event
             $this->event_status = $event->event_status;
             $this->id = $event->id;
         }
+
         if (empty($this->errors) && !empty($this->thumbnail)) {
             //save inside the database
             $result = parent::update();
@@ -89,7 +90,7 @@ class PrepackagedEvent extends Event
                 redirectTo(urlFor('/admin/prepackage/prepackage_index.php'));
             }
         }
-
+        echo alertErrorMessage($this->errors);
         return false;
     }
 
@@ -103,15 +104,6 @@ class PrepackagedEvent extends Event
         return count($result);
     }
 
-    /**
-     * @return array
-     */
-    static public function getEvents(): array
-    {
-        $sql = "SELECT * FROM `prepackaged_events` ";
-        $sql .= "LIMIT 5";
-        return parent::findBySql($sql);
-    }
 
     protected function validateInput(): array
     {

@@ -11,6 +11,25 @@ class DatabaseObject
 
     protected $id;
 
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM " . static::$tableName . " ";
+        $sql .= "WHERE id='" . self::$database->escape_string($this->id) . "' ";
+        $sql .= "LIMIT 1";
+        return self::$database->query($sql);
+    }
+
+    public function updateColumn(string $sql)
+    {
+        return self::$database->query($sql);
+    }
+
     /**
      * @param $database
      * @return void
@@ -54,7 +73,7 @@ class DatabaseObject
         if (!empty($user_id)) {
             $sql .= " WHERE id !='" . self::$database->escape_string($user_id) . "'";
         }
-        if(static::$tableName == "prepackaged_events" || static::$tableName == "custom_events"){
+        if (static::$tableName == "prepackaged_events" || static::$tableName == "custom_events") {
             $sql .= " ORDER BY event_date ";
         }
         $sql .= " LIMIT {$per_page} ";
@@ -205,20 +224,4 @@ class DatabaseObject
         return $sanitized;
     }
 
-    public function delete()
-    {
-        $sql = "DELETE FROM " . static::$tableName . " ";
-        $sql .= "WHERE id='" . self::$database->escape_string($this->id) . "' ";
-        $sql .= "LIMIT 1";
-        return self::$database->query($sql);
-    }
-
-    public function updateColumn(string $sql)
-    {
-        return self::$database->query($sql);
-    }
-
-    public function getId(){
-        return $this->id;
-    }
 }
