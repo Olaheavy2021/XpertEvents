@@ -153,7 +153,8 @@ class PrepackagedEvent extends Event
         return $this->errors;
     }
 
-        protected function processImage(): string
+
+    private function processImage(): string
     {
         if (!empty($_FILES["image"]["name"])) {
             //Get file info

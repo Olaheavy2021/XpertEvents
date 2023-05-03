@@ -81,6 +81,8 @@ class DatabaseObject
         $sql .= " LIMIT {$per_page} ";
         $sql .= " OFFSET {$offset}";
         return static::findBySql($sql);
+
+        var_dump($sql);
             
         } catch (Exception $e) {
            echo alertErrorMessage($this->errors);
