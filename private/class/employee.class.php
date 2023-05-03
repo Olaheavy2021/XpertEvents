@@ -31,7 +31,7 @@ class Employee extends User
 
     static public function getTotalNumberOfEmployee(): int
     {
-        $sql = "SELECT * FROM `users` WHERE role = 'ADMIN' OR role = 'MANAGER' OR role = 'SALESSTAFF'";
+        $sql = "SELECT * FROM `users` WHERE role = 'ADMIN' OR role = 'MANAGER' OR role = 'SALESTAFF'";
         $result = parent::findBySql($sql);
         return count($result);
     }

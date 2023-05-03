@@ -195,16 +195,20 @@ class User extends DatabaseObject
         return PrepackagedEvent::getEvents($per_page, $offset);
     }
 
-    static public function getUserByEmail(string $email)
+
+    public function getUserByEmail(string $email)
     {
         $sql = "SELECT * FROM " . static::$tableName . " ";
-        $sql .= "WHERE email='" . self::$database->escape_string($email) . "'";
+        $sql .= "WHERE email='" . self::$database->escape_string($email) . "' ";
+       
         $obj_array = static::findBySql($sql);
-        if (!empty($obj_array)) {
-            return array_shift($obj_array);
-        } else {
-            return false;
-        }
+
+        if(count($obj_array) == 1){
+              return $obj_array;
+          }else{
+            $errors = array("Client needs to create an account before event can be profiled.");
+             return $errors;
+          }
     }
 
     /**

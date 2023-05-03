@@ -37,13 +37,6 @@ if (isPostRequest()) {
             Let's make your vision a reality!
         </p>
         <button class="cn"><a href="<?php echo urlFor('/contact_us.php'); ?>">Contact US</a></button>
-<!--        <div class="loginError">-->
-<!--            --><?php
-//            if(isset($user)){
-//                echo displayErrors($user->errors);
-//            }
-//            ?>
-<!--        </div>-->
         <div class="form">
             <h2>Login Here</h2>
 

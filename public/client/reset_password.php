@@ -27,10 +27,7 @@ if (isPostRequest()) {
                 <i class="fas fa-user-cog"></i></span>
         </div>
         <div class="reset-container">
-            <div class="client-reset-error">
-                <?php echo displayErrors($client->errors); ?>
-            </div>
-
+          
             <div class="reset-center">
                 <div class="reset-header">Reset Password Form</div>
                 <form action="<?php echo urlFor('/client/reset_password.php'); ?>" method="post">

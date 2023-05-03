@@ -6,10 +6,11 @@ require_once (PRIVATE_PATH . '/class/admin.class.php');
 requireLogin();
 include SHARED_PATH . '/admin_header.php';
 
+$id = $_GET['id'];
 if (!isset($_GET['id'])) {
     redirectTo(urlFor('/admin/user/user_index.php'));
 }
-$id = $_GET['id'];
+
 $user = User::findById($id);
 if (!$user) {
     redirectTo(urlFor('/admin/user/user_index.php'));
@@ -17,7 +18,7 @@ if (!$user) {
 
 if(isPostRequest()){
     $admin = new Admin();
-    $result = $admin->disableUser($user->id);
+    $result = $admin->disableUser($id);
     global $session;
     $session->message('The user was disabled successfully');
     redirectTo(urlFor('/admin/user/user_index.php'));

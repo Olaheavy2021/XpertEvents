@@ -59,7 +59,7 @@ $total_count = CustomEvent::countAll(null);
                         <?php
                     }
                 } else {
-                    echo "<tr><td colspan='5'>No prepackage event found</td></tr>";
+                    echo "<tr><td colspan='5'>No custom event found</td></tr>";
                 }
                 ?>
                 </tbody>

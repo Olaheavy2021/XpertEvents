@@ -22,9 +22,6 @@ if (isPostRequest()) {
         </div>
         <div class="tableSection">
             <div class="reset-container">
-                <div class="addUser-error">
-                    <?php echo displayErrors($user->errors); ?>
-                </div>
                 <div class="reset-center">
                     <div class="reset-header">Create Employee Form</div>
                     <form action="<?php echo urlFor('/admin/user/add_employee.php') ?>" method="post">

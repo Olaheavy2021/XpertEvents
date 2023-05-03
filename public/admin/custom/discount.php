@@ -2,16 +2,30 @@
 //require_once('../../../private/initialize.php');
 require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
 require_once(PRIVATE_PATH . '/class/employee.class.php');
+require_once(PRIVATE_PATH . '/class/manager.class.php');
+require_once(PRIVATE_PATH . '/class/customevent.class.php');
 requireLogin();
 include SHARED_PATH . '/admin_header.php';
-if (!isset($_GET['id'])) {
-    redirectTo(urlFor('/admin/custom/custom_index.php'));
-}
+
 $id = $_GET['id'];
-$event = Employee::viewCustomEvent($id);
-if (!$event) {
+if (isPostRequest()) {
+   $args = $_POST['event'];
+    $event = new CustomEvent($args);
+    Manager::applyDiscount($id, $event);
+    
+  }else{
+
+    if (!isset($_GET['id'])) {
     redirectTo(urlFor('/admin/custom/custom_index.php'));
 }
+    $event = Employee::viewCustomEvent($id);
+
+    if (!$event) {
+        redirectTo(urlFor('/admin/custom/custom_index.php'));
+    }
+
+}
+
 ?>
 <div class="container">
     <?php include SHARED_PATH . '/admin_navigation.php' ?>
@@ -23,7 +37,8 @@ if (!$event) {
             <a class="back-link" href="<?php echo urlFor('/admin/custom/custom_index.php') ?>">&laquo; Back to
                 List</a>
             <div class="prepackage-container">
-                <form>
+                <span style="margin-bottom: 10px;color: #ED7014;">Please enter the discounted price in the Discounted price column.</span>
+                <form action="<?php echo urlFor('/admin/custom/discount.php?id=' . removeSpecialChars(encodeUrl($id)))?>" method="post">
                     <div class="form first">
                         <div class="details">
                             <span class="title">Custom Event Discount</span>
@@ -110,10 +125,10 @@ if (!$event) {
 
                                  <div class="input-field">
                                     <label>Discounted Price</label>
-                                    <input type="text" placeholder="Enter Discounted Price"
-                                           value="<?php echo removeSpecialChars($event->getNumberOfGuests()) ?>"
-                                           name="event[number_of_guest]"
-                                           >
+                                    <input type="number" min="1" placeholder="Enter Discounted Price"
+                                           value="<?php echo removeSpecialChars($event->getDiscountedPrice()) ?>"
+                                           name="event[discounted_price]"
+                                           required>
                                 </div>
 
 

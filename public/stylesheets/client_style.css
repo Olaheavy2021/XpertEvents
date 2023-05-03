@@ -264,7 +264,7 @@ nav a:hover {
 
 .main .tableSection {
     margin-top: 20px;
-    margin-left: 290px;
+    margin-left: 0px;
     height: 500px;
     overflow: auto;
 }
@@ -336,6 +336,10 @@ tr td .tableEye {
         height: 280px;
         width: 700px;
     }
+}
+
+@media (min-width: 1024px) and (max-width: 2560px) {
+   
 }
 
 

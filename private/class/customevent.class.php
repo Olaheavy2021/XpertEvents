@@ -7,7 +7,7 @@ class CustomEvent extends Event
 {
     static protected $tableName = "custom_events";
     static protected $dbColumns = ['id', 'name', 'description', 'location', 'event_date', 'price',
-        'number_of_guest', 'is_av_required', 'is_catering_required', 'number_of_chair', 'number_of_table', 'client_id'];
+        'number_of_guest', 'is_av_required', 'is_catering_required', 'number_of_chair', 'number_of_table', 'client_id', 'discounted_price'];
 
     protected $number_of_guest;
 
@@ -20,6 +20,8 @@ class CustomEvent extends Event
     protected $number_of_table;
 
     protected $client_id;
+
+    protected $discounted_price;
 
     private $client_email;
 
@@ -39,6 +41,7 @@ class CustomEvent extends Event
         $this->is_av_required = $args['is_av_required'] ?? '';
         $this->client_email = $args['client_email'] ?? '';
         $this->client_id = $args['client_id'] ?? 0;
+        $this->discounted_price =  $args['discounted_price'] ?? 0;
     }
 
     public function getNumberOfGuests()
@@ -91,16 +94,25 @@ class CustomEvent extends Event
         $this->client_email = $email;
     }
 
+    public function getDiscountedPrice(){
+
+        return $this->discounted_price;
+
+    }
+
     /**
      * @return bool
      */
     public function createEvent(): bool
     {
         //check if the user already exists
-        $user = User::getUserByEmail($this->client_email);
+         $user = new User();
+         $exists =  $user->getUserByEmail($this->client_email);
 
-        if (!$user) {
+         if (!empty($exists)) {
             $this->errors[] = "Client needs to create an account before event can be profiled.";
+             echo alertErrorMessage($this->errors);
+             return false;
         }
 
         //validate the form
@@ -116,6 +128,7 @@ class CustomEvent extends Event
                 redirectTo(urlFor('/admin/custom/custom_index.php'));
             }
         }
+
         echo alertErrorMessage($this->errors);
         return false;
 
@@ -128,10 +141,13 @@ class CustomEvent extends Event
     public function updateEvent(string $id): bool
     {
         //check if the user already exists
-        $user = User::getUserByEmail($this->client_email);
+         $user = new User();
+         $exists =  $user->getUserByEmail($this->client_email);
 
-        if (!$user) {
+         if (!empty($exists)) {
             $this->errors[] = "Client needs to create an account before event can be profiled.";
+             echo alertErrorMessage($this->errors);
+             return false;
         }
 
         //validate the form
