@@ -76,14 +76,15 @@ class DatabaseObject
             $sql .= " WHERE id !='" . self::$database->escape_string($user_id) . "'";
         }
         if (static::$tableName == "prepackaged_events" || static::$tableName == "custom_events") {
-            $sql .= " ORDER BY event_date ";
+            $sql .= " ORDER BY id";
         }
         $sql .= " LIMIT {$per_page} ";
         $sql .= " OFFSET {$offset}";
         return static::findBySql($sql);
             
         } catch (Exception $e) {
-            var_dump($e);
+           echo alertErrorMessage($this->errors);
+            return false;
         }
         
     }
@@ -191,6 +192,7 @@ class DatabaseObject
         $sql .= join(', ', $attribute_pairs);
         $sql .= " WHERE id='" . self::$database->escape_string($this->id) . "' ";
         $sql .= "LIMIT 1";
+       
         return self::$database->query($sql);
     }
 

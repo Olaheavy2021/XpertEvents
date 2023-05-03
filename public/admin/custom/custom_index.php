@@ -55,7 +55,11 @@ $events = Employee::viewCustomEvents($per_page, $pagination->offset());
                                 if ($_SESSION['role'] === SALESSTAFF_ROLE) {
                                     echo '<button class="tableEye"><a href="' . urlFor('/admin/custom/details.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-eye"></i></a></button>';
                                     echo '<button class="tableEdit"><a href="' . urlFor('/admin/custom/edit.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-edit"></i></a></button>';
-                                } else {
+                                }elseif( $_SESSION['role'] === MANAGER_ROLE){
+                                     echo '<button class="tableEye"><a href="' . urlFor('/admin/custom/details.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-eye"></i></a></button>';
+                                     echo '<button class="tableEdit"><a href="' . urlFor('/admin/custom/discount.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-percent"></i></a></button>';
+                                }
+                                 else {
                                     echo '<button class="tableEye"><a href="' . urlFor('/admin/custom/details.php?id=' . removeSpecialChars(encodeUrl($events[$i]->getId()))) . '"><i class="fas fa-eye"></i></a></button>';
                                 }
                                 ?>

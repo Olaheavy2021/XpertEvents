@@ -1,26 +1,31 @@
-<?php
-//require_once('../../../private/initialize.php');
+<?php 
+//require_once('../../private/initialize.php');
 require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
-require_once(PRIVATE_PATH . '/class/employee.class.php');
+require_once(PRIVATE_PATH . '/class/client.class.php');
+
+
 requireLogin();
-include SHARED_PATH . '/admin_header.php';
+include SHARED_PATH . '/client_header.php';
 if (!isset($_GET['id'])) {
-    redirectTo(urlFor('/admin/custom/custom_index.php'));
+    redirectTo(urlFor('/client/custom/custom_index.php'));
 }
 $id = $_GET['id'];
-$event = Employee::viewCustomEvent($id);
+$event = Client::viewCustomEvent($id);
 if (!$event) {
-    redirectTo(urlFor('/admin/custom/custom_index.php'));
+    redirectTo(urlFor('/client/custom/custom_index.php'));
 }
 ?>
 <div class="container">
-    <?php include SHARED_PATH . '/admin_navigation.php' ?>
-    <div class="userTable">
-        <div class="userTableHeader">
-            <p>Custom Event Details</p>
+    <?php include SHARED_PATH . '/client_navigation.php' ?>
+    <section class="main">
+         <div class="main-top">
+            <h1>Custom Events Details</h1>
+            <span> <?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>
+                <i class="fas fa-user-cog"></i></span>
         </div>
+         
         <div class="disableContent">
-            <a class="back-link" href="<?php echo urlFor('/admin/custom/custom_index.php') ?>">&laquo; Back to
+            <a class="back-link" href="<?php echo urlFor('/client/custom/custom_index.php') ?>">&laquo; Back to
                 List</a>
             <div class="prepackage-container">
                 <form>
@@ -122,8 +127,5 @@ if (!$event) {
             </div>
 
         </div>
-    </div>
+    </section>
 </div>
-</div>
-</body>
-</html>

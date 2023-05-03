@@ -1,6 +1,7 @@
 <?php
 require_once (PRIVATE_PATH . '/class/user.class.php');
 require_once (PRIVATE_PATH . '/class/enquiry.class.php');
+require_once (PRIVATE_PATH . '/class/customevent.class.php');
 class Client extends User
 {
 
@@ -39,6 +40,24 @@ class Client extends User
     static public function makeEnquiry(Enquiry $enquiry):bool
     {
         return $enquiry->createEnquiry();
+    }
+
+    static public function viewCustomEvents(int $per_page, int $offset)
+    {
+        return CustomEvent::getClientEvents($per_page, $offset);
+    }
+
+     static public function viewCustomEvent(string $id)
+    {
+        $event = CustomEvent::getEvent($id);
+        if ($event) {
+            $user = User::findById($event->getClientID());
+            if ($user) {
+                $event->setClientEmail($user->getEmail());
+                $event->setClientName($user->getFullName());
+                return $event;
+            }
+        }
     }
 
     static public function getTotalNumberOfClients() :int

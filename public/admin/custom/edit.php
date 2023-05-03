@@ -11,8 +11,7 @@ $event = new CustomEvent();
 if (isPostRequest()) {
     $args = $_POST['event'];
     $event = new CustomEvent($args);
-    echo $id;
-    SalesStaff::editCustomEvent($event, $id);
+    return SalesStaff::editCustomEvent($event, $id);
 } else {
     if (!isset($id)) {
         redirectTo(urlFor('/admin/prepackage/prepackage_index.php'));

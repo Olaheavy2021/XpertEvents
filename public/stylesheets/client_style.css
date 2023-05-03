@@ -262,10 +262,79 @@ nav a:hover {
     text-overflow: ellipsis;
 }
 
+.main .tableSection {
+    margin-top: 20px;
+    margin-left: 290px;
+    height: 500px;
+    overflow: auto;
+}
+
+.main table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.main table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f6f9fc;
+    color: #ED7014;
+    font-size: 15px;
+}
+
+.disableContent a {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    font-family: "Lucida Handwriting", serif;
+    font-weight: bolder;
+
+}
+
+th, td {
+    border-bottom: 1px solid #dddddd;
+    padding: 10px 20px;
+    word-break: break-all;
+    text-align: center;
+}
+
+tr td {
+    font-family: "Lucida Sans", serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+tr:hover td {
+    color: #ED7014;
+    cursor: pointer;
+    background-color: #f6f9fc;
+}
+
+tr td button{
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Lucida Sans", serif;
+}
+
+
+td i {
+    padding: 7px;
+    color: #fff;
+    border-radius: 50px;
+}
+
+tr td .tableEye {
+    background-color: #ED7014;
+}
+
 @media screen and (min-width: 2560px) {
     .box img {
         height: 280px;
-        width: 800px;
+        width: 700px;
     }
 }
 

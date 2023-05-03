@@ -140,7 +140,7 @@ class CustomEvent extends Event
             //save inside the database
             $this->client_id = $user->getId();
             $this->id = $id;
-
+        
             $result = parent::update();
             if ($result) {
                 global $session;
@@ -148,6 +148,7 @@ class CustomEvent extends Event
                 redirectTo(urlFor('/admin/custom/custom_index.php'));
             }
         }
+
         echo alertErrorMessage($this->errors);
         return false;
 
@@ -195,7 +196,7 @@ class CustomEvent extends Event
         }
 
         // Remove any non-numeric characters from the chair input
-        $this->number_of_chair = preg_replace('/[^0-9.]/', '', $this->price);
+        $this->number_of_chair = preg_replace('/[^0-9.]/', '', $this->number_of_chair);
         if (isBlank($this->number_of_chair)) {
             $this->errors[] = "Number of chair cannot be blank.";
         } elseif (!is_numeric($this->number_of_chair) || $this->number_of_chair <= 0) {
@@ -203,7 +204,7 @@ class CustomEvent extends Event
         }
 
         // Remove any non-numeric characters from the table input
-        $this->number_of_table = preg_replace('/[^0-9.]/', '', $this->price);
+        $this->number_of_table = preg_replace('/[^0-9.]/', '', $this->number_of_table);
         if (isBlank($this->number_of_table)) {
             $this->errors[] = "Number of table cannot be blank.";
         } elseif (!is_numeric($this->number_of_table) || $this->number_of_table <= 0) {
@@ -211,7 +212,7 @@ class CustomEvent extends Event
         }
 
         // Remove any non-numeric characters from the table input
-        $this->number_of_guest = preg_replace('/[^0-9.]/', '', $this->price);
+        $this->number_of_guest = preg_replace('/[^0-9.]/', '', $this->number_of_guest);
         if (isBlank($this->number_of_guest)) {
             $this->errors[] = "Number of Guest cannot be blank.";
         } elseif (!is_numeric($this->number_of_guest) || $this->number_of_guest <= 0) {
@@ -239,5 +240,17 @@ class CustomEvent extends Event
         $sql = "SELECT * FROM custom_events";
         $result = parent::findBySql($sql);
         return count($result);
+    }
+
+    static public function getClientEvents(int $per_page, int $offset)
+    {
+        $client_id = $_SESSION['user_id'];
+
+        $sql = " SELECT * FROM custom_events";
+        $sql .= " WHERE client_id ='" . $client_id . "'";
+        $sql .= " LIMIT {$per_page} ";
+        $sql .= " OFFSET {$offset}";
+
+        return parent::findBySql($sql);
     }
 }

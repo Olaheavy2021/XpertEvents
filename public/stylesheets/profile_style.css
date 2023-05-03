@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: -80px;
     position: fixed;
 }
 
@@ -14,7 +15,6 @@
     align-items: center;
     justify-content: center;
     margin-top: -150px;
-    position: fixed;
 }
 
 .profile-box {
@@ -215,6 +215,25 @@ select:focus {
         position: absolute;
         padding-bottom: 10px;
     }
+
+      .reset-container {
+        position: fixed;
+        margin-top: -400px;
+    }
+}
+
+@media (min-width: 1600px) and  (max-width: 2500px) {
+    .admin-reset-error {
+      
+        position: fixed;
+        margin-top: -20px;
+    }
+
+    .reset-container{
+        position: fixed;
+        margin-top: -500px;
+    }
+
 }
 
 

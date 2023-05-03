@@ -26,7 +26,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="<?php echo urlFor('/client/custom/custom_index.php') ?>"
+                <?php if ($current_page == 'custom_index.php') echo 'class="active"'; ?>>
                 <i class="fas fa-glass-cheers"></i>
                 <span class="nav-item">Custom Events</span>
             </a>

@@ -2,12 +2,14 @@
 //require_once('../private/initialize.php');
 require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
 require_once(PRIVATE_PATH . '/class/enquiry.class.php');
+require_once(PRIVATE_PATH . '/class/client.class.php');
 $page_title = 'Contact Us';
 include SHARED_PATH . '/public_header.php';
 
 if (isPostRequest()) {
     $args = $_POST['enquiry'];
     $enquiry = new Enquiry($args);
+    var_dump($enquiry);
     Client::makeEnquiry($enquiry);
 } else {
     $enquiry = new Enquiry();

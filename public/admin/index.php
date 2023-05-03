@@ -6,6 +6,7 @@ require_once(PRIVATE_PATH . '/class/user.class.php');
 require_once(PRIVATE_PATH . '/class/client.class.php');
 require_once(PRIVATE_PATH . '/class/prepackagedevent.class.php');
 require_once(PRIVATE_PATH . '/class/customevent.class.php');
+require_once(PRIVATE_PATH . '/class/pagination.class.php');
 requireLogin();
 include SHARED_PATH . '/admin_header.php';
 
@@ -13,10 +14,11 @@ include SHARED_PATH . '/admin_header.php';
  $current_page = 1;
  $per_page = 5;
  $total_count = PrepackagedEvent::countAll(null);
- if($total_count>0){
+
+ if($total_count > 0 ){
     $pagination = new Pagination($current_page, $per_page, $total_count);
+    
     $prepackaged_events = User::viewPrepackagedEvents($per_page, $pagination->offset());
-    var_dump($prepackaged_events);
  }
  
 ?>

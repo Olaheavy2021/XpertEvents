@@ -72,8 +72,10 @@ class PrepackagedEvent extends Event
         //validate the form
         $this->validateInput();
 
+
         if (!empty($_FILES["image"]["name"])) {
             $this->thumbnail = $this->processImage();
+             //$this->thumbnail = $event->thumbnail;
             $this->event_status = $event->event_status;
             $this->id = $event->id;
         }else{
@@ -151,7 +153,7 @@ class PrepackagedEvent extends Event
         return $this->errors;
     }
 
-    protected function processImage(): string
+        protected function processImage(): string
     {
         if (!empty($_FILES["image"]["name"])) {
             //Get file info
@@ -164,7 +166,6 @@ class PrepackagedEvent extends Event
                 $permanent_name = rand(100, 10000) . "-" . $_FILES["image"]["name"];
                 $temporary_name = $_FILES['image']['tmp_name'];
                 $uploads_dir = PUBLIC_PATH . '/images/uploads';
-                var_dump( $uploads_dir);
 
                 move_uploaded_file($temporary_name, $uploads_dir . '/' . $permanent_name);
 
@@ -180,3 +181,4 @@ class PrepackagedEvent extends Event
     }
 
 }
+

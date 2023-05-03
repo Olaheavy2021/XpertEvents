@@ -16,6 +16,7 @@ if(isPostRequest()){
         redirectTo(urlFor('/client/prepackage/prepackage_details.php'));
     }else{
         $error_message = array("Please sign in or register to book an event");
+         redirectTo(urlFor('/homepage.php'));
         echo alertErrorMessage($error_message);
     }
 }

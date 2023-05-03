@@ -15,10 +15,9 @@ if (isPostRequest()) {
     if ($result) {
         $new_id = $client->getId();
         if (!empty($session)) {
-            $session->message('Welcome to XpertEvents, we are at your service.');
-            $session->login($client);
+            $session->message('Welcome to XpertEvents, we are at your service. Please sign in.');
         }
-        redirectTo(urlFor('/client/index.php'));
+        redirectTo(urlFor('/homepage.php'));
     }
 
 } else {

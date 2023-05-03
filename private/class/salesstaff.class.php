@@ -15,6 +15,7 @@ class SalesStaff extends Employee
 
     static public function editCustomEvent(CustomEvent $event, string $id):bool
     {
+
         return $event->updateEvent($id);
     }
 

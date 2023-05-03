@@ -30,7 +30,7 @@ include SHARED_PATH . '/client_header.php';
                 <i class="fas fa-glass-cheers"></i>
                 <h3>Custom Events</h3>
                 <p>View details of your custom events</p>
-                <a href="" class="button">View</a>
+                <a href="<?php echo urlFor('client/custom/custom_index.php'); ?>" class="button">View</a>
             </div>
             <div class="card">
                 <i class="fas fa-user"></i>
@@ -61,6 +61,7 @@ include SHARED_PATH . '/client_header.php';
                         <button>Book Event</button>
                         <i class="fas fa-box-open event"></i>
                     </div>
+                    
                 </div>
             </div>
         </section>

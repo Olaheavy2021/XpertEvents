@@ -2,6 +2,7 @@
 // require_once('../../../private/initialize.php');
 require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
 require_once(PRIVATE_PATH . '/class/prepackagedevent.class.php');
+require_once(PRIVATE_PATH . '/class/pagination.class.php');
 requireLogin();
 include SHARED_PATH . '/client_header.php';
 //load the events from the database
@@ -35,8 +36,7 @@ if($total_count > 0){
                             <i class="fas fa-box-open event"></i>
                         </div>
                         <div class="box">
-                            <!-- <img src="<?php echo '../../images/uploads/' . $event->getThumbnail() ?>" alt="Thumbnail"> -->
-                            <img src="<?php echo '/~c2042523/xpertevents/public/images/' . $event->getThumbnail() ?>" alt="Thumbnail">
+                            <img src="<?php echo '../../images/uploads/' . $event->getThumbnail() ?>" alt="Thumbnail">
                         </div>
                         <div class="box">
                             <h3 class="description"><?php echo removeSpecialChars($event->getShortDescription())?></h3>

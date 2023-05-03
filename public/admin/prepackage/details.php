@@ -9,6 +9,7 @@ if (!isset($_GET['id'])) {
 }
 $id = $_GET['id'];
 $event = PrepackagedEvent::findById($id);
+
 if (!$event) {
     redirectTo(urlFor('/admin/prepackage/prepackage_index.php'));
 }
@@ -35,6 +36,8 @@ if (!$event) {
                                            value="<?php echo removeSpecialChars($event->getName()) ?>"
                                            placeholder="Enter your name" required>
                                 </div>
+
+                               
 
                                 <div class="input-field">
                                     <label>Date of Event</label>
@@ -70,7 +73,7 @@ if (!$event) {
                                       value="<?php echo removeSpecialChars($event->getDescription()) ?>"
                                       placeholder="Enter text here"><?php echo removeSpecialChars($event->getDescription()) ?></textarea>
                             <div class="thumbnail">
-                                <img height="250px"
+                              <img height="250px"
                                      src="<?php echo '../../images/uploads/' . $event->getThumbnail() ?>"/>
                             </div>
                         </div>

@@ -17,7 +17,7 @@ if (!$event) {
     <?php include SHARED_PATH . '/admin_navigation.php' ?>
     <div class="userTable">
         <div class="userTableHeader">
-            <p>Custom Event Details</p>
+            <p>Custom Event Discount</p>
         </div>
         <div class="disableContent">
             <a class="back-link" href="<?php echo urlFor('/admin/custom/custom_index.php') ?>">&laquo; Back to
@@ -26,7 +26,7 @@ if (!$event) {
                 <form>
                     <div class="form first">
                         <div class="details">
-                            <span class="title">Custom Event Details</span>
+                            <span class="title">Custom Event Discount</span>
 
                             <div class="fields">
                                 <div class="input-field">
@@ -108,6 +108,14 @@ if (!$event) {
                                            readonly>
                                 </div>
 
+                                 <div class="input-field">
+                                    <label>Discounted Price</label>
+                                    <input type="text" placeholder="Enter Discounted Price"
+                                           value="<?php echo removeSpecialChars($event->getNumberOfGuests()) ?>"
+                                           name="event[number_of_guest]"
+                                           >
+                                </div>
+
 
                             </div>
                         </div>
@@ -117,6 +125,11 @@ if (!$event) {
                             <textarea name="event[description]"
                                       placeholder="Enter text here"
                                       readonly><?php echo removeSpecialChars($event->getDescription()) ?></textarea>
+
+                              <button class="nextBtn">
+                                <span class="btnText">Submit</span>
+                                <i class="uil uil-navigator"></i>
+                            </button>
                         </div>
                     </div>
             </div>
