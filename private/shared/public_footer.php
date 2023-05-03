@@ -1,4 +1,7 @@
 <!--- Footer -->
+<?php
+require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
+?>
 <footer>
     <div class="footerContainer">
         <div class="socialIcons">
@@ -37,5 +40,6 @@
 </html>
 
 <?php
+global $database;
 db_disconnect($database);
 ?>

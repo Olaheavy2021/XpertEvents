@@ -1,4 +1,5 @@
 <?php
+require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
 require_once(PRIVATE_PATH . '/class/databaseobject.class.php');
 require_once(PRIVATE_PATH . '/class/prepackagedevent.class.php');
 
@@ -51,7 +52,7 @@ class User extends DatabaseObject
     /**
      * @return string
      */
-    public function getEmail():string
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -224,7 +225,6 @@ class User extends DatabaseObject
             $this->setHashedPassword();
             // validate password
         } else {
-            echo "Working";
             // password not being updated, skip hashing and validation
             $this->password_required = false;
         }

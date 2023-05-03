@@ -16,7 +16,6 @@ include SHARED_PATH . '/admin_header.php';
  if($total_count>0){
     $pagination = new Pagination($current_page, $per_page, $total_count);
     $prepackaged_events = User::viewPrepackagedEvents($per_page, $pagination->offset());
-    var_dump($prepackaged_events);
  }
  
 ?>

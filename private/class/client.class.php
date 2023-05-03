@@ -1,4 +1,5 @@
 <?php
+require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
 require_once (PRIVATE_PATH . '/class/user.class.php');
 require_once (PRIVATE_PATH . '/class/enquiry.class.php');
 class Client extends User
