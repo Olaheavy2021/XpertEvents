@@ -14,7 +14,8 @@ class Client extends User
         //check if the user already exists
         $user = $this->getUserByEmail($this->email);
 
-        if ($user) {
+
+        if (hasPresence($user->email)) {
             $this->errors[] = "This user already exists. Please login";
         }
 

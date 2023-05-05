@@ -219,16 +219,7 @@
 }
 
 @media screen and (min-width: 2560px) {
-    /* .events-page{
-        width: 100%;
-        background-size: cover;
-        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.60) 50%, rgba(0, 0, 0, 0.60) 50%),
-        url(/public/images/background_image.jpg);
-        background-position: center; 
-        height: 150vh;
-        padding-bottom: 10px;
-    } */
-
+    
       .events-page{
         width: 100%;
         background-size: cover;
@@ -248,23 +239,14 @@
 
 
 @media (min-width: 1024px) and (max-width: 2560px) {
-    /* .events-page{
-        width: 100%;
-        background-size: cover;
-        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.60) 50%, rgba(0, 0, 0, 0.60) 50%),
-        url(/public/images/background_image.jpg);
-        background-position: center; 
-        height: 150vh;
-        padding-bottom: 10px;
-    } */
-
+    
       .events-page{
         width: 100%;
         background-size: cover;
         background-image: linear-gradient(to top, rgba(0, 0, 0, 0.60) 50%, rgba(0, 0, 0, 0.60) 50%),
         url(/~c2042523/xpertevents/public/images/background_image.jpg);
         background-position: center; /* Center the image */
-        height: 250vh;
+        height: 320vh;
         padding-bottom: 10px;
     }
 

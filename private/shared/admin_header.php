@@ -21,5 +21,6 @@
             alert(message);
         }
     </script>
+     <?php requireLoginAdmin(); ?>
 </head>
 <body>

@@ -24,7 +24,7 @@ include SHARED_PATH . '/client_header.php';
                 <i class="fas fa-box-open"></i>
                 <h3>Pre-Packaged Events</h3>
                 <p>Book our pre-packaged events</p>
-                <a href="" class="button">Book</a>
+                <a href="<?php echo urlFor('client/prepackage/prepackage_details.php'); ?>" class="button">Book</a>
             </div>
             <div class="card">
                 <i class="fas fa-glass-cheers"></i>

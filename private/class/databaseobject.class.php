@@ -81,12 +81,11 @@ class DatabaseObject
         $sql .= " LIMIT {$per_page} ";
         $sql .= " OFFSET {$offset}";
         return static::findBySql($sql);
-
-        var_dump($sql);
             
         } catch (Exception $e) {
-           echo alertErrorMessage($this->errors);
-            return false;
+            $error = array($e->getMessage());
+            alertErrorMessage($error);
+            return [];
         }
         
     }
@@ -161,7 +160,6 @@ class DatabaseObject
             }
             return $result;
         } catch (Exception $ex) {
-            echo $ex->getMessage();
             $exceptionCode = $ex->getCode();
             if ($exceptionCode == '1062') {
                 $this->errors[] = "Account already exists. Please sign in";

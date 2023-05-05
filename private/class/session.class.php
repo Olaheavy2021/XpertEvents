@@ -10,6 +10,7 @@ class Session {
     public $last_name;
 
     public $role;
+
     public $phone_number;
 
     private $last_login;
@@ -28,6 +29,7 @@ class Session {
     public function login($user): bool
     {
         if($user) {
+
             // prevent session fixation attacks
             session_regenerate_id(true);
             $this->user_id = $_SESSION['user_id'] = $user->getId();
@@ -49,6 +51,18 @@ class Session {
     public function is_logged_in(): bool
     {
         return isset($this->user_id) && $this->last_login_is_recent();
+    }
+
+    public function is_customer():bool
+    {
+    
+        return $this->is_logged_in() && ($this->role == CLIENT_ROLE);
+    }
+
+    public function is_admin():bool
+    {
+    
+        return $this->is_logged_in() && ($this->role == ADMIN_ROLE || $this->role == SALESSTAFF_ROLE || $this->role == MANAGER_ROLE );
     }
 
     /**
@@ -81,6 +95,10 @@ class Session {
         if(isset($_SESSION['user_id'])) {
             $this->user_id = $_SESSION['user_id'];
             $this->email = $_SESSION['email'];
+            $this->role = $_SESSION['role'];
+            $this->first_name = $_SESSION['first_name'];
+            $this->last_name = $_SESSION['last_name'];
+            $this->phone_number = $_SESSION['phone_number'];
             $this->last_login = $_SESSION['last_login'];
         }
     }

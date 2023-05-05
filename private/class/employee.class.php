@@ -44,7 +44,7 @@ class Employee extends User
         $sql = "SELECT * FROM `users` ";
         $sql .= "WHERE role = 'ADMIN' ";
         $sql .= "OR role = 'MANAGER' ";
-        $sql .= "OR role = 'SALESSTAFF' ";
+        $sql .= "OR role = 'SALESTAFF' ";
         $sql .= "LIMIT 5";
         return parent::findBySql($sql);
 

@@ -82,9 +82,12 @@ class User extends DatabaseObject
         //check if the user already exists
         $user = $this->getUserByEmail($this->email);
 
-        if (!$user) {
+        if (isBlank($user->email)) {
             $this->errors[] = "The password or email is invalid.";
+             echo alertErrorMessage($this->errors);
+            return false;
         }
+            
 
         $this->hashed_password = $user->hashed_password;
 
@@ -159,9 +162,9 @@ class User extends DatabaseObject
         //check if the user exists
         $user = $this->getUserByEmail($this->email);
 
-        if (empty($user)) {
-            $this->errors[] = "This user does not exist";
-            echo alertErrorMessage($this->errors);
+          if (isBlank($user->email)) {
+            $this->errors[] = "The password or email is invalid.";
+             echo alertErrorMessage($this->errors);
             return false;
         }
 
@@ -199,16 +202,13 @@ class User extends DatabaseObject
     public function getUserByEmail(string $email)
     {
         $sql = "SELECT * FROM " . static::$tableName . " ";
-        $sql .= "WHERE email='" . self::$database->escape_string($email) . "' ";
-       
+        $sql .= "WHERE email='" . self::$database->escape_string($email) . "'";
         $obj_array = static::findBySql($sql);
-
-        if(count($obj_array) == 1){
-              return $obj_array;
-          }else{
-            $errors = array("Client needs to create an account before event can be profiled.");
-             return $errors;
-          }
+        if (!empty($obj_array)) {
+            return array_shift($obj_array);
+        } else {
+            return new User();
+        }
     }
 
     /**

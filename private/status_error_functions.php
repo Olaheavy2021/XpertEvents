@@ -14,6 +14,34 @@ function requireLogin(): void
 }
 
 /**
+ * @return void
+ */
+function requireLoginCustomer(): void
+{
+    global $session;
+    if (!$session->is_customer()) {
+         $session->message("Forbidden Request. This is an client page");
+        redirectTo(urlFor('/homepage.php'));
+    } else {
+        // Do nothing, let the rest of the page proceed
+    }
+}
+
+/**
+ * @return void
+ */
+function requireLoginAdmin(): void
+{
+    global $session;
+    if (!$session->is_admin()) {
+         $session->message("Forbidden Request. This is an admin page");
+        redirectTo(urlFor('/homepage.php'));
+    } else {
+        // Do nothing, let the rest of the page proceed
+    }
+}
+
+/**
  * @param array $errors
  * @return string
  */

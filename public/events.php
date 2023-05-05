@@ -1,4 +1,5 @@
 <?php
+require_once('/home/SHU/c2042523/public_html/xpertevents/private/initialize.php');
 require_once('../private/initialize.php');
 require_once(PRIVATE_PATH . '/class/prepackagedevent.class.php');
 require_once(PRIVATE_PATH . '/class/pagination.class.php');
@@ -12,12 +13,15 @@ $events = PrepackagedEvent::findAll($per_page, $pagination->offset(), null);
 
 if(isPostRequest()){
     global $session;
-    if($session->is_logged_in()){
+    if($session->is_logged_in() && $session->is_customer()){
         redirectTo(urlFor('/client/prepackage/prepackage_details.php'));
-    }else{
-        $error_message = array("Please sign in or register to book an event");
+    }else if($session->is_logged_in() && $session->is_admin()){
+         $session->message("Employees do not have access. Please sign in as a client");
          redirectTo(urlFor('/homepage.php'));
-        echo alertErrorMessage($error_message);
+    }
+    else{
+         $session->message("Please sign in or register to book an event");
+         redirectTo(urlFor('/homepage.php'));
     }
 }
 ?>

@@ -9,7 +9,6 @@ include SHARED_PATH . '/public_header.php';
 if (isPostRequest()) {
     $args = $_POST['enquiry'];
     $enquiry = new Enquiry($args);
-    var_dump($enquiry);
     Client::makeEnquiry($enquiry);
 } else {
     $enquiry = new Enquiry();

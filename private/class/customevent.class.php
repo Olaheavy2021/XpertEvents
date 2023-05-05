@@ -105,11 +105,11 @@ class CustomEvent extends Event
      */
     public function createEvent(): bool
     {
-        //check if the user already exists
+         //check if the user already exists
          $user = new User();
-         $exists =  $user->getUserByEmail($this->client_email);
+         $user = $user->getUserByEmail($this->client_email);
 
-         if (!empty($exists)) {
+         if (isBlank($user->email)) {
             $this->errors[] = "Client needs to create an account before event can be profiled.";
              echo alertErrorMessage($this->errors);
              return false;
@@ -142,9 +142,10 @@ class CustomEvent extends Event
     {
         //check if the user already exists
          $user = new User();
-         $exists =  $user->getUserByEmail($this->client_email);
+         $user = $user->getUserByEmail($this->client_email);
+    
 
-         if (!empty($exists)) {
+         if (isBlank($user->email)) {
             $this->errors[] = "Client needs to create an account before event can be profiled.";
              echo alertErrorMessage($this->errors);
              return false;
