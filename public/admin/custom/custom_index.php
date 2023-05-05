@@ -76,7 +76,7 @@ $events = Employee::viewCustomEvents($per_page, $pagination->offset());
         </div>
         <!--        <div class="pagination">-->
         <?php
-        $url = urlFor('/admin/user/user_index.php');
+        $url = urlFor('/admin/custom/custom_index.php');
         echo $pagination->pageLinks($url);
         ?>
     </div>

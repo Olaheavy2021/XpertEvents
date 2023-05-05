@@ -10,7 +10,7 @@ include SHARED_PATH . '/admin_header.php';
 //Fetch all the enquiries and paginate the page
 $current_page = $_GET['page'] ?? 1;
 $per_page = 5;
-$total_count = Enquiry::countAll($_SESSION['user_id']);
+$total_count = Enquiry::countAll(null);
 $pagination = new Pagination($current_page, $per_page, $total_count);
 $enquiries = Admin::viewEnquiries($per_page, $pagination->offset());
 
@@ -59,7 +59,7 @@ $enquiries = Admin::viewEnquiries($per_page, $pagination->offset());
         </div>
         <!--        <div class="pagination">-->
         <?php
-        $url = urlFor('/admin/user/user_index.php');
+        $url = urlFor('/admin/user/enquiry_index.php');
         echo $pagination->pageLinks($url);
         ?>
 

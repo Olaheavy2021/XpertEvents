@@ -73,7 +73,7 @@ $total_count = PrepackagedEvent::countAll(null);
         </div>
         <!--        <div class="pagination">-->
         <?php
-        $url = urlFor('/admin/user/user_index.php');
+        $url = urlFor('/admin/prepackage/prepackage_index.php');
         echo $pagination->pageLinks($url);
         ?>
     </div>
